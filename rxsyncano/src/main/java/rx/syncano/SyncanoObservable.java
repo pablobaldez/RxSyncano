@@ -12,32 +12,11 @@ import java.util.List;
 
 import rx.Observable;
 import rx.Observable.OnSubscribe;
-import rx.schedulers.Schedulers;
 
 /**
  * Created by pablobaldez on 24/04/16.
  */
 public class SyncanoObservable {
-
-    public static <T extends SyncanoObject> Observable<T> save(T t){
-        return Observable.create((OnSubscribe<T>) subscriber -> t.save(new SyncanoCallback<T>() {
-            @Override
-            public void success(Response<T> response, T result) {
-                if (response.isSuccess()){
-                    subscriber.onNext(t);
-                    subscriber.onCompleted();
-                }
-                else {
-                    failure(response);
-                }
-            }
-
-            @Override
-            public void failure(Response<T> response) {
-                subscriber.onError(new RxSyncanoException(response));
-            }
-        })).subscribeOn(Schedulers.io());
-    }
 
     public static <T extends SyncanoObject> Observable<T> where(Where<T> where) {
         return Observable.create((OnSubscribe<T>) subscriber -> where.get(new SyncanoListCallback<T>() {
@@ -58,7 +37,7 @@ public class SyncanoObservable {
             public void failure(ResponseGetList<T> response) {
                 subscriber.onError(new RxSyncanoException(response));
             }
-        })).subscribeOn(Schedulers.io());
+        }));
     }
 
     public static <T extends SyncanoObject> Observable<T> get(Class<T> clazz) {
@@ -82,7 +61,7 @@ public class SyncanoObservable {
             public void failure(ResponseGetList<T> response) {
                 subscriber.onError(new RxSyncanoException(response));
             }
-        })).subscribeOn(Schedulers.io());
+        }));
     }
 
     public static <T extends SyncanoObject> Observable<T> get(Class<T> clazz, int id){
@@ -102,9 +81,47 @@ public class SyncanoObservable {
              public void failure(Response<T> response) {
                  subscriber.onError(new RxSyncanoException(response));
              }
-         })).subscribeOn(Schedulers.io());
+         }));
     }
 
+    public static <T extends SyncanoObject> Observable<T> save(T t){
+        return Observable.create((OnSubscribe<T>) subscriber -> t.save(new SyncanoCallback<T>() {
+            @Override
+            public void success(Response<T> response, T result) {
+                if (response.isSuccess()){
+                    subscriber.onNext(t);
+                    subscriber.onCompleted();
+                }
+                else {
+                    failure(response);
+                }
+            }
 
+            @Override
+            public void failure(Response<T> response) {
+                subscriber.onError(new RxSyncanoException(response));
+            }
+        }));
+    }
+
+    public static<T extends SyncanoObject> Observable<T> delete(T t) {
+       return Observable.create((OnSubscribe<T>) subscriber -> t.delete(new SyncanoCallback<T>() {
+           @Override
+           public void success(Response<T> response, T result) {
+               if(response.isSuccess()) {
+                   subscriber.onNext(result);
+                   subscriber.onCompleted();
+               }
+               else {
+                   failure(response);
+               }
+           }
+
+           @Override
+           public void failure(Response<T> response) {
+               subscriber.onError(new RxSyncanoException(response));
+           }
+       }));
+    }
 
 }
