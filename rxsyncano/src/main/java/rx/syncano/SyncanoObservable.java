@@ -69,7 +69,7 @@ public class SyncanoObservable {
      * @return an Observable that, when a {@link Subscriber} subscribes to it, will execute the specified
      *         function
      */
-    public static <T extends SyncanoObject> Observable<T> where(Where<T> where) {
+    public static <T extends SyncanoObject> Observable<T> get(Where<T> where) {
         return Observable.create((OnSubscribe<T>) subscriber ->
                 where.get(new RxSyncanoListCallback<>(subscriber)));
     }
@@ -130,7 +130,7 @@ public class SyncanoObservable {
                 Syncano.please(clazz).get(id, new RxSyncanoCallback<>(subscriber)));
     }
 
-    public static <T extends SyncanoObject> Observable<Integer> count(Class<T> clazz) {
+    public static <T extends SyncanoObject> Observable<Integer> getCountEstimation(Class<T> clazz) {
         return Observable.create((OnSubscribe<Integer>) subscriber ->
                 Syncano.please(clazz).getCountEstimation(new RxSyncanoCallback<>(subscriber)));
     }
