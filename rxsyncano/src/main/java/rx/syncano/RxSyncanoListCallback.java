@@ -11,7 +11,7 @@ import rx.Subscriber;
 /**
  * Created by pablobaldez on 24/04/16.
  */
-public class RxSyncanoListCallback<T extends SyncanoObject> extends SyncanoListCallback<T>{
+class RxSyncanoListCallback<T extends SyncanoObject> extends SyncanoListCallback<T>{
 
     private final Subscriber<? super T> subscriber;
 

@@ -8,7 +8,7 @@ import rx.Subscriber;
 /**
  * Created by pablobaldez on 24/04/16.
  */
-public class RxSyncanoCallback<T> implements SyncanoCallback<T> {
+class RxSyncanoCallback<T> implements SyncanoCallback<T> {
 
     private final Subscriber<? super  T> subscriber;
 

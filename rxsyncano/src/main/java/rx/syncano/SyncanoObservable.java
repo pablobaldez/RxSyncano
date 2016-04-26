@@ -3,6 +3,7 @@ package rx.syncano;
 import com.google.gson.JsonObject;
 import com.syncano.library.Syncano;
 import com.syncano.library.api.Where;
+import com.syncano.library.data.AbstractUser;
 import com.syncano.library.data.ScriptEndpoint;
 import com.syncano.library.data.SyncanoObject;
 import com.syncano.library.data.Trace;
@@ -170,17 +171,28 @@ public class SyncanoObservable {
     ////////////////////////////////////////////////////////////////////////////////////////////////
     // Syncano Methods
     ////////////////////////////////////////////////////////////////////////////////////////////////
-    public static <T extends SyncanoObject> Observable<T> deleteObject(Class<T> clazz, int id) {
+    public static <T extends SyncanoObject> Observable<T> getObject(Syncano syncano, T t){
         return Observable.create((OnSubscribe<T>) subscriber ->
-                Syncano.getInstance()
-                        .deleteObject(clazz, id)
-                        .sendAsync(new RxSyncanoCallback<>(subscriber)));
+                syncano.getObject(t).sendAsync(new RxSyncanoCallback<>(subscriber)));
     }
 
-    public static <T extends SyncanoObject> Observable<T> deleteObject(T t) {
-        return Observable.create((OnSubscribe<T>) subscriber -> Syncano.getInstance()
-                .deleteObject(t)
-                .sendAsync(new RxSyncanoCallback<>(subscriber)));
+    public static <T extends SyncanoObject> Observable<T> getObject(Syncano syncano, Class<T> clazz,  int id) {
+        return Observable.create((OnSubscribe<T>) subscriber ->
+                syncano.getObject(clazz, id).sendAsync(new RxSyncanoCallback<T>(subscriber)));
+    }
+
+    public static <T extends SyncanoObject> Observable<T> getObjects(Syncano syncano, Class<T> clazz){
+        return Observable.create((OnSubscribe<T>) subscriber ->
+                syncano.getObjects(clazz).sendAsync(new RxSyncanoListCallback<>(subscriber)));
+    }
+
+    public static <T extends SyncanoObject> Observable<T> getObjects(Syncano syncano, Class<T> clazz, String pageUrl){
+        return Observable.create((OnSubscribe<T>) subscriber ->
+                syncano.getObjects(clazz, pageUrl).sendAsync(new RxSyncanoListCallback<>(subscriber)));
+    }
+
+    public static <T extends SyncanoObject> Observable<T> deleteObject(Syncano syncano, Class<T> clazz, int id) {
+        return Observable.create((OnSubscribe<T>) subscriber -> syncano.deleteObject(clazz, id));
     }
 
     public static <T extends SyncanoObject> Observable<T> deleteObject(Syncano syncano, T t) {
@@ -188,9 +200,28 @@ public class SyncanoObservable {
                 syncano.deleteObject(t).sendAsync(new RxSyncanoCallback<>(subscriber)));
     }
 
-    public static <T extends SyncanoObject> Observable<T> deleteObject(Syncano syncano, Class<T> clazz, int id) {
-
-        return Observable.create((OnSubscribe<T>) subscriber -> syncano.deleteObject(clazz, id));
+    public static <T extends SyncanoObject> Observable<T> createObject(Syncano syncano,T t){
+        return Observable.create((OnSubscribe<T>) subscriber ->
+                syncano.createObject(t).sendAsync(new RxSyncanoCallback<>(subscriber)));
     }
 
+    public static <T extends SyncanoObject> Observable<T> createObject(Syncano syncano, T t, boolean updateGivenObject) {
+        return Observable.create((OnSubscribe<T>) subscriber ->
+                syncano.createObject(t, updateGivenObject).sendAsync(new RxSyncanoCallback<>(subscriber)));
+    }
+
+    public static <T extends AbstractUser> Observable<T> fetchCurrentUser(Syncano syncano, Class<T> clazz){
+        return Observable.create((OnSubscribe<T>) subscriber ->
+                syncano.fetchCurrentUser(clazz).sendAsync(new RxSyncanoCallback<>(subscriber)));
+    }
+
+    public static <T extends AbstractUser> Observable<T> fetchCurrentUser(Syncano syncano, T user) {
+        return Observable.create((OnSubscribe<T>) subscriber ->
+                syncano.fetchCurrentUser(user).sendAsync(new RxSyncanoCallback<>(subscriber)));
+    }
+
+    public static <T extends SyncanoObject> Observable<T> getObjectsDataEndpoint(Syncano syncano, Class<T> clazz, String dataEndpoint) {
+        return Observable.create((OnSubscribe<T>) subscriber ->
+                syncano.getObjectsDataEndpoint(clazz, dataEndpoint).sendAsync(new RxSyncanoListCallback<>(subscriber)));
+    }
 }
