@@ -4,6 +4,7 @@ import com.google.gson.JsonObject;
 import com.syncano.library.Syncano;
 import com.syncano.library.api.Where;
 import com.syncano.library.data.AbstractUser;
+import com.syncano.library.data.Profile;
 import com.syncano.library.data.ScriptEndpoint;
 import com.syncano.library.data.SyncanoObject;
 import com.syncano.library.data.Trace;
@@ -38,19 +39,79 @@ public class SyncanoObservable {
     ////////////////////////////////////////////////////////////////////////////////////////////////
     // SyncanoObject Methods
     ////////////////////////////////////////////////////////////////////////////////////////////////
+
+    /**
+     * Generate the Observable that, when a {@link Subscriber} subscribes to it, will save the data
+     * object
+     *
+     * <dl>
+     *  <dt><b>Scheduler:</b></dt>
+     *  <dd>{@code create} does not operate by default on a particular {@link Scheduler}.</dd>
+     * </dl>
+     *
+     * @param t Data object to save
+     * @param <T> the type of the items that this Observable emits
+     * @return an Observable that, when a {@link Subscriber} subscribes to it, will execute the
+     * specified function
+     */
     public static <T extends SyncanoObject> Observable<T> save(T t){
         return Observable.create((OnSubscribe<T>) subscriber ->
                 t.save(new RxSyncanoCallback<>(subscriber)));
     }
 
+    /**
+     * Generate the Observable that, when a {@link Subscriber} subscribes to it, will delete the
+     * data object
+     *
+     * <dl>
+     *  <dt><b>Scheduler:</b></dt>
+     *  <dd>{@code create} does not operate by default on a particular {@link Scheduler}.</dd>
+     * </dl>
+     *
+     * @param t Data object to delete
+     * @param <T> the type of the items that this Observable emits
+     * @return an Observable that, when a {@link Subscriber} subscribes to it, will execute the
+     * specified function
+     */
     public static <T extends SyncanoObject> Observable<T> delete(T t) {
         return Observable.create((OnSubscribe<T>) subscriber ->
                 t.delete(new RxSyncanoCallback<>(subscriber)));
     }
 
+    /**
+     * Generate the Observable that, when a {@link Subscriber} subscribes to it, will fetch the
+     * data object
+     *
+     * <dl>
+     *  <dt><b>Scheduler:</b></dt>
+     *  <dd>{@code create} does not operate by default on a particular {@link Scheduler}.</dd>
+     * </dl>
+     *
+     * @param t Data object to fetch
+     * @param <T> the type of the items that this Observable emits
+     * @return an Observable that, when a {@link Subscriber} subscribes to it, will execute the
+     * specified function
+     */
     public static <T extends SyncanoObject> Observable<T> fetch(T t) {
         return Observable.create((OnSubscribe<T>) subscriber ->
                 t.fetch(new RxSyncanoCallback<>(subscriber)));
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    // AbstractUser Methods
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    public static <T extends AbstractUser> Observable<T> register(T t){
+        return Observable.create((OnSubscribe<T>) subscriber ->
+                t.register(new RxSyncanoCallback<>(subscriber)));
+    }
+
+    public static <T extends AbstractUser> Observable<T> fetch(T t) {
+        return Observable.create((OnSubscribe<T>) subscriber ->
+                t.fetch(new RxSyncanoCallback<>(subscriber)));
+    }
+
+    public static <T extends Profile, U extends AbstractUser<? extends T>> Observable<T> fetchProfile(U u) {
+        return Observable.create((OnSubscribe<T>) subscriber -> u.fetchProfile(new RxSyncanoCallback<>(subscriber)));
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -223,5 +284,9 @@ public class SyncanoObservable {
     public static <T extends SyncanoObject> Observable<T> getObjectsDataEndpoint(Syncano syncano, Class<T> clazz, String dataEndpoint) {
         return Observable.create((OnSubscribe<T>) subscriber ->
                 syncano.getObjectsDataEndpoint(clazz, dataEndpoint).sendAsync(new RxSyncanoListCallback<>(subscriber)));
+    }
+
+    private SyncanoObservable(){
+        // disable instances
     }
 }
