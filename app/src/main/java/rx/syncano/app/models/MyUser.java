@@ -7,4 +7,8 @@ import com.syncano.library.data.Profile;
  * Created by pablobaldez on 4/27/16.
  */
 public class MyUser extends AbstractUser<Profile> {
+
+    public MyUser(String userName, String password) {
+        super(userName, password);
+    }
 }

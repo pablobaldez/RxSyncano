@@ -6,10 +6,12 @@ import android.util.Log;
 
 import com.syncano.library.Syncano;
 
+import rx.Observer;
 import rx.Subscriber;
 import rx.schedulers.Schedulers;
 import rx.syncano.SyncanoObservable;
 import rx.syncano.app.R;
+import rx.syncano.app.models.MyUser;
 import rx.syncano.app.models.TestModel;
 
 public class MainActivity extends AppCompatActivity {
@@ -19,9 +21,25 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        SyncanoObservable.get(TestModel.class)
-                .subscribeOn(Schedulers.io())
-                .subscribe(subscriber());
+        MyUser user = new MyUser("pablo2","123456");
+        SyncanoObservable
+                .register(user)
+                .subscribe(new Observer<MyUser>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.d("pablo","Completed----------------------");
+                    }
+
+                    @Override
+                    public void onNext(MyUser myUser) {
+                        Syncano.getInstance().setUser(myUser);
+                    }
+                });
     }
 
     private Subscriber<TestModel> subscriber(){
