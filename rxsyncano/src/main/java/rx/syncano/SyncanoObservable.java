@@ -39,7 +39,6 @@ public class SyncanoObservable {
     ////////////////////////////////////////////////////////////////////////////////////////////////
     // SyncanoObject Methods
     ////////////////////////////////////////////////////////////////////////////////////////////////
-
     /**
      * Generate the Observable that, when a {@link Subscriber} subscribes to it, will save the data
      * object
@@ -49,7 +48,7 @@ public class SyncanoObservable {
      *  <dd>{@code create} does not operate by default on a particular {@link Scheduler}.</dd>
      * </dl>
      *
-     * @param t Data object to save
+     * @param t Data object to be saved
      * @param <T> the type of the items that this Observable emits
      * @return an Observable that, when a {@link Subscriber} subscribes to it, will execute the
      * specified function
@@ -68,7 +67,7 @@ public class SyncanoObservable {
      *  <dd>{@code create} does not operate by default on a particular {@link Scheduler}.</dd>
      * </dl>
      *
-     * @param t Data object to delete
+     * @param t Data object to be deleted
      * @param <T> the type of the items that this Observable emits
      * @return an Observable that, when a {@link Subscriber} subscribes to it, will execute the
      * specified function
@@ -87,7 +86,7 @@ public class SyncanoObservable {
      *  <dd>{@code create} does not operate by default on a particular {@link Scheduler}.</dd>
      * </dl>
      *
-     * @param t Data object to fetch
+     * @param t Data object to be fetched
      * @param <T> the type of the items that this Observable emits
      * @return an Observable that, when a {@link Subscriber} subscribes to it, will execute the
      * specified function
@@ -100,25 +99,70 @@ public class SyncanoObservable {
     ////////////////////////////////////////////////////////////////////////////////////////////////
     // AbstractUser Methods
     ////////////////////////////////////////////////////////////////////////////////////////////////
+    /**
+     * Generate the Observable that, when a {@link Subscriber} subscribes to it, will Create a new
+     * custom User.
+     *
+     * To be able to register Users you'll have to create an API Key that has allow_user_create flag
+     * set to true.
+     * <dl>
+     *  <dt><b>Scheduler:</b></dt>
+     *  <dd>{@code create} does not operate by default on a particular {@link Scheduler}.</dd>
+     * </dl>
+     *
+     * @param t User to be registered
+     * @param <T> the type of the items that this Observable emits
+     * @return an Observable that, when a {@link Subscriber} subscribes to it, will execute the
+     * specified function
+     */
     public static <T extends AbstractUser> Observable<T> register(T t){
         return Observable.create((OnSubscribe<T>) subscriber ->
                 t.register(new RxSyncanoCallback<>(subscriber)));
     }
 
+    /**
+     * Generate the Observable that, when a {@link Subscriber} subscribes to it, will fetch the user
+     *
+     * <dl>
+     *  <dt><b>Scheduler:</b></dt>
+     *  <dd>{@code create} does not operate by default on a particular {@link Scheduler}.</dd>
+     * </dl>
+     *
+     * @param t User to be fetched
+     * @param <T> the type of the items that this Observable emits
+     * @return an Observable that, when a {@link Subscriber} subscribes to it, will execute the
+     * specified function
+     */
     public static <T extends AbstractUser> Observable<T> fetch(T t) {
         return Observable.create((OnSubscribe<T>) subscriber ->
                 t.fetch(new RxSyncanoCallback<>(subscriber)));
     }
 
+    /**
+     * Generate the Observable that, when a {@link Subscriber} subscribes to it, will fetch the user
+     * profile
+     * <dl>
+     *  <dt><b>Scheduler:</b></dt>
+     *  <dd>{@code create} does not operate by default on a particular {@link Scheduler}.</dd>
+     * </dl>
+     *
+     * @param u User profile to be fetched
+     * @param <T> Type of Profile and items emitted by Observable
+     * @param <U> Type of Abstract user object
+     * @return an Observable that, when a {@link Subscriber} subscribes to it, will execute the
+     * specified function
+     */
     public static <T extends Profile, U extends AbstractUser<? extends T>> Observable<T> fetchProfile(U u) {
-        return Observable.create((OnSubscribe<T>) subscriber -> u.fetchProfile(new RxSyncanoCallback<>(subscriber)));
+        return Observable.create((OnSubscribe<T>) subscriber ->
+                u.fetchProfile(new RxSyncanoCallback<>(subscriber)));
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
     // RequestBuilder and Where Methods
     ////////////////////////////////////////////////////////////////////////////////////////////////
     /**
-     * Load data with a predefined {@link Where} instance
+     * Generate the Observable that, when a {@link Subscriber} subscribes to it, will Load data with
+     * a predefined {@link Where} instance
      *
      * <dl>
      *  <dt><b>Scheduler:</b></dt>
@@ -136,7 +180,8 @@ public class SyncanoObservable {
     }
 
     /**
-     * Load data with a predefined {@link RequestBuilder} instance
+     * Generate the Observable that, when a {@link Subscriber} subscribes to it, will Load data with
+     * a predefined {@link RequestBuilder} instance
      *
      * <dl>
      *  <dt><b>Scheduler:</b></dt>
@@ -153,8 +198,9 @@ public class SyncanoObservable {
     }
 
     /**
-     * Load data with a predefined {@link RequestBuilder} instance. Use it when you want to apply
-     * limits, filters, ordering...
+     * Generate the Observable that, when a {@link Subscriber} subscribes to it, will Load data with
+     * a predefined {@link RequestBuilder} instance. Use it when you want to apply limits, filters,
+     * ordering...
      *
      * <dl>
      *  <dt><b>Scheduler:</b></dt>
@@ -191,6 +237,20 @@ public class SyncanoObservable {
                 Syncano.please(clazz).get(id, new RxSyncanoCallback<>(subscriber)));
     }
 
+    /**
+     * Generate the Observable that, when a {@link Subscriber} subscribes to it, will load the count
+     * estimation of a current object.
+     *
+     * <dl>
+     *  <dt><b>Scheduler:</b></dt>
+     *  <dd>{@code create} does not operate by default on a particular {@link Scheduler}.</dd>
+     * </dl>
+     *
+     * @param clazz Syncano class that will be requested.
+     * @param <T> the type of the Data Object that will be counted
+     * @return an Observable that, when a {@link Subscriber} subscribes to it, will execute the specified
+     *         function
+     */
     public static <T extends SyncanoObject> Observable<Integer> getCountEstimation(Class<T> clazz) {
         return Observable.create((OnSubscribe<Integer>) subscriber ->
                 Syncano.please(clazz).getCountEstimation(new RxSyncanoCallback<>(subscriber)));
@@ -199,26 +259,98 @@ public class SyncanoObservable {
     ////////////////////////////////////////////////////////////////////////////////////////////////
     // ScriptEndpoint and Trace Methods
     ////////////////////////////////////////////////////////////////////////////////////////////////
+    /**
+     * Generate the Observable that, when a {@link Subscriber} subscribes to it, will run a
+     * {@link ScriptEndpoint}
+     *
+     * <dl>
+     *  <dt><b>Scheduler:</b></dt>
+     *  <dd>{@code create} does not operate by default on a particular {@link Scheduler}.</dd>
+     * </dl>
+     *
+     * @param se Endpoint that will be executed
+     * @return an Observable that, when a {@link Subscriber} subscribes to it, will execute the specified
+     *         function
+     */
     public static Observable<Trace> run(ScriptEndpoint se) {
         return Observable.create((OnSubscribe<Trace>) subscriber ->
                 se.run(new RxSyncanoCallback<>(subscriber)));
     }
 
+    /**
+     * Generate the Observable that, when a {@link Subscriber} subscribes to it, will run a
+     * {@link ScriptEndpoint} using an json as payload
+     *
+     * <dl>
+     *  <dt><b>Scheduler:</b></dt>
+     *  <dd>{@code create} does not operate by default on a particular {@link Scheduler}.</dd>
+     * </dl>
+     *
+     * @param se endpoint that will be executed
+     * @param payload payload to send
+     * @return an Observable that, when a {@link Subscriber} subscribes to it, will execute the specified
+     *         function
+     */
     public static Observable<Trace> run(ScriptEndpoint se, JsonObject payload) {
         return Observable.create((OnSubscribe<Trace>) subscriber ->
                 se.run(payload, new RxSyncanoCallback<>(subscriber)));
     }
 
+    /**
+     * Generate the Observable that, when a {@link Subscriber} subscribes to it, will run a
+     * {@link ScriptEndpoint}. Use this approach when you want to parse the response by yourself
+     *
+     * <dl>
+     *  <dt><b>Scheduler:</b></dt>
+     *  <dd>{@code create} does not operate by default on a particular {@link Scheduler}.</dd>
+     * </dl>
+     *
+     * @param se endpoint that will be executed
+     * @return an Observable that, when a {@link Subscriber} subscribes to it, will execute the specified
+     *         function
+     */
     public static Observable<String> runCustomResponse(ScriptEndpoint se) {
         return Observable.create((OnSubscribe<String>) subscriber ->
                 se.runCustomResponse(new RxSyncanoCallback<>(subscriber)));
     }
 
+    /**
+     * Generate the Observable that, when a {@link Subscriber} subscribes to it, will run a
+     * {@link ScriptEndpoint}. Use this approach when you want any serialized custom response
+     *
+     * <dl>
+     *  <dt><b>Scheduler:</b></dt>
+     *  <dd>{@code create} does not operate by default on a particular {@link Scheduler}.</dd>
+     * </dl>
+     *
+     * @param se endpoint that will be executed
+     * @param clazz type of object to be load
+     * @param <T> the type of the items that this Observable emits
+     * @return an Observable that, when a {@link Subscriber} subscribes to it, will execute the specified
+     *         function
+     */
     public static <T> Observable<T> runCustomResponse(ScriptEndpoint se, Class<T> clazz) {
         return Observable.create((OnSubscribe<T>) subscriber ->
                 se.runCustomResponse(clazz, new RxSyncanoCallback<>(subscriber)));
     }
 
+    /**
+     * Generate the Observable that, when a {@link Subscriber} subscribes to it, will run a
+     * {@link ScriptEndpoint}. Use this approach when you want any serialized custom response and
+     * pass any payload as parameter
+     *
+     * <dl>
+     *  <dt><b>Scheduler:</b></dt>
+     *  <dd>{@code create} does not operate by default on a particular {@link Scheduler}.</dd>
+     * </dl>
+     *
+     * @param se endpoint that will be executed
+     * @param clazz type of object to be load
+     * @param payload payload to send
+     * @param <T> the type of the items that this Observable emits
+     * @return an Observable that, when a {@link Subscriber} subscribes to it, will execute the specified
+     *         function
+     */
     public static <T> Observable<T> runCustomResponse(ScriptEndpoint se, Class<T> clazz, JsonObject payload) {
         return Observable.create((OnSubscribe<T>) subscriber ->
                 se.runCustomResponse(clazz, payload, new RxSyncanoCallback<>(subscriber)));
