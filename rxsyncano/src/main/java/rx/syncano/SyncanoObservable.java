@@ -2,12 +2,17 @@ package rx.syncano;
 
 import com.google.gson.JsonObject;
 import com.syncano.library.Syncano;
+import com.syncano.library.api.IncrementBuilder;
+import com.syncano.library.api.RequestGet;
 import com.syncano.library.api.Where;
+import com.syncano.library.choice.SocialAuthBackend;
 import com.syncano.library.data.AbstractUser;
 import com.syncano.library.data.Profile;
+import com.syncano.library.data.Script;
 import com.syncano.library.data.ScriptEndpoint;
 import com.syncano.library.data.SyncanoObject;
 import com.syncano.library.data.Trace;
+import com.syncano.library.data.User;
 import com.syncano.library.simple.RequestBuilder;
 
 import rx.Observable;
@@ -34,6 +39,7 @@ import rx.Subscriber;
  *
  * Uses Observable to wraps all callback functions
  */
+@SuppressWarnings("unused")
 public class SyncanoObservable {
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -96,6 +102,75 @@ public class SyncanoObservable {
                 t.fetch(new RxSyncanoCallback<>(subscriber)));
     }
 
+    public static <T extends SyncanoObject> Observable<T> addition(Syncano syncano, T t, IncrementBuilder incrementBuilder) {
+        return Observable.create((OnSubscribe<T>) subscriber ->
+                syncano.addition(t, incrementBuilder).sendAsync(new RxSyncanoCallback<>(subscriber)));
+    }
+
+    public static <T extends SyncanoObject> Observable<T> addition(Syncano syncano, Class<T> clazz, int id, IncrementBuilder incrementBuilder){
+        return Observable.create((OnSubscribe<T>) subscriber ->
+                syncano.addition(clazz, id, incrementBuilder).sendAsync(new RxSyncanoCallback<>(subscriber)));
+    }
+
+    public static <T extends SyncanoObject> Observable<T> getObject(Syncano syncano, T t){
+        return Observable.create((OnSubscribe<T>) subscriber ->
+                syncano.getObject(t).sendAsync(new RxSyncanoCallback<>(subscriber)));
+    }
+
+    public static <T extends SyncanoObject> Observable<T> getObject(Syncano syncano, Class<T> clazz,  int id) {
+        return Observable.create((OnSubscribe<T>) subscriber ->
+                syncano.getObject(clazz, id).sendAsync(new RxSyncanoCallback<>(subscriber)));
+    }
+
+    public static <T extends SyncanoObject> Observable<T> getObjects(Syncano syncano, Class<T> clazz){
+        return Observable.create((OnSubscribe<T>) subscriber ->
+                syncano.getObjects(clazz).sendAsync(new RxSyncanoListCallback<>(subscriber)));
+    }
+
+    public static <T extends SyncanoObject> Observable<T> getObjects(Syncano syncano, Class<T> clazz, String pageUrl){
+        return Observable.create((OnSubscribe<T>) subscriber ->
+                syncano.getObjects(clazz, pageUrl).sendAsync(new RxSyncanoListCallback<>(subscriber)));
+    }
+
+    public static <T extends SyncanoObject> Observable<T> deleteObject(Syncano syncano, Class<T> clazz, int id) {
+        return Observable.create((OnSubscribe<T>) subscriber -> syncano.deleteObject(clazz, id));
+    }
+
+    public static <T extends SyncanoObject> Observable<T> deleteObject(Syncano syncano, T t) {
+        return Observable.create((OnSubscribe<T>) subscriber ->
+                syncano.deleteObject(t).sendAsync(new RxSyncanoCallback<>(subscriber)));
+    }
+
+    public static <T extends SyncanoObject> Observable<T> createObject(Syncano syncano,T t){
+        return Observable.create((OnSubscribe<T>) subscriber ->
+                syncano.createObject(t).sendAsync(new RxSyncanoCallback<>(subscriber)));
+    }
+
+    public static <T extends SyncanoObject> Observable<T> createObject(Syncano syncano, T t, boolean updateGivenObject) {
+        return Observable.create((OnSubscribe<T>) subscriber ->
+                syncano.createObject(t, updateGivenObject).sendAsync(new RxSyncanoCallback<>(subscriber)));
+    }
+
+    public static <T extends SyncanoObject> Observable<T> updateObject(Syncano syncano, T t) {
+        return Observable.create((OnSubscribe<T>) subscriber ->
+                syncano.updateObject(t).sendAsync(new RxSyncanoCallback<>(subscriber)));
+    }
+
+    public static <T extends SyncanoObject> Observable<T> updateObject(Syncano syncano, T t, boolean updateGivenObject) {
+        return Observable.create((OnSubscribe<T>) subscriber ->
+                syncano.updateObject(t, updateGivenObject).sendAsync(new RxSyncanoCallback<>(subscriber)));
+    }
+
+    public static <T extends SyncanoObject> Observable<T> getObjectsDataEndpoint(Syncano syncano, Class<T> clazz, String dataEndpoint) {
+        return Observable.create((OnSubscribe<T>) subscriber ->
+                syncano.getObjectsDataEndpoint(clazz, dataEndpoint).sendAsync(new RxSyncanoListCallback<>(subscriber)));
+    }
+
+    public static Observable<String> getObjectsWithTemplate(Syncano syncano, RequestGet requestGet, String templateName){
+        return Observable.create((OnSubscribe<String>) subscriber ->
+                syncano.getObjectsWithTemplate(requestGet, templateName).sendAsync(new RxSyncanoCallback<>(subscriber)));
+    }
+
     ////////////////////////////////////////////////////////////////////////////////////////////////
     // AbstractUser Methods
     ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -155,6 +230,82 @@ public class SyncanoObservable {
     public static <T extends Profile, U extends AbstractUser<? extends T>> Observable<T> fetchProfile(U u) {
         return Observable.create((OnSubscribe<T>) subscriber ->
                 u.fetchProfile(new RxSyncanoCallback<>(subscriber)));
+    }
+
+    public static <T extends AbstractUser> Observable<T> login(T t) {
+        return Observable.create((OnSubscribe<T>) subscriber ->
+                t.login(new RxSyncanoCallback<>(subscriber)));
+    }
+
+    public static <T extends AbstractUser> Observable<T> loginSocialUser(T user) {
+        return Observable.create((OnSubscribe<T>) subscriber ->
+                user.loginSocialUser(new RxSyncanoCallback<>(subscriber)));
+    }
+
+    public static <T extends AbstractUser> Observable<T> getUser(Syncano syncano, Class<T> clazz, int id){
+        return Observable.create((OnSubscribe<T>) subscriber ->
+                syncano.getUser(clazz, id).sendAsync(new RxSyncanoCallback<>(subscriber)));
+    }
+
+    public static Observable<User> getUser(Syncano syncano, int id) {
+        return Observable.create((OnSubscribe<User>) subscriber ->
+                syncano.getUser(id).sendAsync(new RxSyncanoCallback<>(subscriber)));
+    }
+
+    public static <T extends AbstractUser> Observable<T> fetchCurrentUser(Syncano syncano, Class<T> clazz){
+        return Observable.create((OnSubscribe<T>) subscriber ->
+                syncano.fetchCurrentUser(clazz).sendAsync(new RxSyncanoCallback<>(subscriber)));
+    }
+
+    public static <T extends AbstractUser> Observable<T> fetchCurrentUser(Syncano syncano, T user) {
+        return Observable.create((OnSubscribe<T>) subscriber ->
+                syncano.fetchCurrentUser(user).sendAsync(new RxSyncanoCallback<>(subscriber)));
+    }
+
+    public static <T extends AbstractUser> Observable<T> registerUser(Syncano syncano, T t){
+        return Observable.create((OnSubscribe<T>) subscriber ->
+                syncano.registerUser(t).sendAsync(new RxSyncanoCallback<>(subscriber)));
+    }
+
+    public static Observable<User> updateUser(Syncano syncano, User user) {
+        return Observable.create((OnSubscribe<User>) subscriber ->
+                syncano.updateUser(user).sendAsync(new RxSyncanoCallback<>(subscriber)));
+    }
+
+    public static <T extends AbstractUser> Observable<T> updateCustomUser(Syncano syncano, T t) {
+        return Observable.create((OnSubscribe<T>) subscriber ->
+                syncano.updateCustomUser(t).sendAsync(new RxSyncanoCallback<>(subscriber)));
+    }
+
+    public static <T extends AbstractUser> Observable<T> loginUser(Syncano syncano, T t) {
+        t.login();
+        return Observable.create((OnSubscribe<T>) subscriber ->
+                syncano.loginUser(t).sendAsync(new RxSyncanoCallback<>(subscriber)));
+    }
+
+    public static Observable<User> loginUser(Syncano syncano, String username, String password) {
+        return Observable.create((OnSubscribe<User>) subscriber ->
+                syncano.loginUser(username, password).sendAsync(new RxSyncanoCallback<>(subscriber)));
+    }
+
+    public static <T extends AbstractUser> Observable<T> loginUser(Syncano syncano, Class<T> clazz, String username, String password) {
+        return Observable.create((OnSubscribe<T>) subscriber ->
+                syncano.loginUser(clazz, username, password));
+    }
+
+    public static <T extends AbstractUser> Observable<T> loginSocialUser(Syncano syncano, Class<T> clazz, SocialAuthBackend socialAuthBackend, String authToken) {
+        return Observable.create((OnSubscribe<T>) subscriber ->
+                syncano.loginSocialUser(clazz, socialAuthBackend, authToken));
+    }
+
+    public static Observable<User> loginSocialUser(Syncano syncano, SocialAuthBackend socialAuthBackend, String authToken){
+        return Observable.create((OnSubscribe<User>) subscriber ->
+                syncano.loginSocialUser(socialAuthBackend, authToken).sendAsync(new RxSyncanoCallback<>(subscriber)));
+    }
+
+    public static <T extends AbstractUser> Observable<T> loginSocialUser(Syncano syncano, T t){
+        return Observable.create((OnSubscribe<T>) subscriber ->
+                syncano.loginSocialUser(t).sendAsync(new RxSyncanoCallback<>(subscriber)));
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -257,7 +408,7 @@ public class SyncanoObservable {
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
-    // ScriptEndpoint and Trace Methods
+    // ScriptEndpoint Methods
     ////////////////////////////////////////////////////////////////////////////////////////////////
     /**
      * Generate the Observable that, when a {@link Subscriber} subscribes to it, will run a
@@ -356,66 +507,115 @@ public class SyncanoObservable {
                 se.runCustomResponse(clazz, payload, new RxSyncanoCallback<>(subscriber)));
     }
 
+    public static Observable<String> runScriptEndpointCustomResponse(Syncano syncano, ScriptEndpoint scriptEndpoint){
+        return Observable.create((OnSubscribe<String>) subscriber ->
+                syncano.runScriptEndpointCustomResponse(scriptEndpoint).sendAsync(new RxSyncanoCallback<>(subscriber)));
+    }
+
+    public static Observable<String> runScriptEndpointCustomResponse(Syncano syncano, ScriptEndpoint scriptEndpoint, JsonObject payload){
+        return Observable.create((OnSubscribe<String>) subscriber ->
+                syncano.runScriptEndpointCustomResponse(scriptEndpoint, payload).sendAsync(new RxSyncanoCallback<>(subscriber)));
+    }
+
+    public static <T> Observable<T> runScriptEndpointCustomResponse(Syncano syncano, ScriptEndpoint scriptEndpoint, Class<T> clazz){
+        return Observable.create((OnSubscribe<T>) subscriber ->
+                syncano.runScriptEndpointCustomResponse(scriptEndpoint, clazz).sendAsync(new RxSyncanoCallback<>(subscriber)));
+    }
+
+    public static <T> Observable<T>  runScriptEndpointCustomResponse(Syncano syncano, ScriptEndpoint scriptEndpoint, Class<T> clazz, JsonObject payload){
+        return Observable.create((OnSubscribe<T>) subscriber ->
+                syncano.runScriptEndpointCustomResponse(scriptEndpoint, clazz, payload).sendAsync(new RxSyncanoCallback<>(subscriber)));
+    }
+
+    public static Observable<String> runScriptEndpointCustomResponse(Syncano syncano, String name){
+        return Observable.create((OnSubscribe<String>) subscriber ->
+                syncano.runScriptEndpointCustomResponse(name).sendAsync(new RxSyncanoCallback<>(subscriber)));
+    }
+
+    public static Observable<String> runScriptEndpointCustomResponse(Syncano syncano, String name, JsonObject payload){
+        return Observable.create((OnSubscribe<String>) subscriber ->
+                syncano.runScriptEndpointCustomResponse(name, payload).sendAsync(new RxSyncanoCallback<>(subscriber)));
+    }
+
+    public static <T> Observable<T> runScriptEndpointCustomResponse(Syncano syncano, String name, Class<T> clazz){
+        return Observable.create((OnSubscribe<T>) subscriber ->
+                syncano.runScriptEndpointCustomResponse(name, clazz).sendAsync(new RxSyncanoCallback<>(subscriber)));
+    }
+
+    public static <T> Observable<T>  runScriptEndpointCustomResponse(Syncano syncano, String name, Class<T> clazz, JsonObject payload){
+        return Observable.create((OnSubscribe<T>) subscriber ->
+                syncano.runScriptEndpointCustomResponse(name, clazz, payload).sendAsync(new RxSyncanoCallback<>(subscriber)));
+    }
+
+    public static Observable<Trace> runScriptEndpoint(Syncano syncano, ScriptEndpoint scriptEndpoint) {
+        return Observable.create((OnSubscribe<Trace>) subscriber ->
+                syncano.runScriptEndpoint(scriptEndpoint).sendAsync(new RxSyncanoCallback<>(subscriber)));
+    }
+
+    public static Observable<Trace> runScriptEndpoint(Syncano syncano, ScriptEndpoint scriptEndpoint, JsonObject params) {
+        return Observable.create((OnSubscribe<Trace>) subscriber -> syncano.
+                runScriptEndpoint(scriptEndpoint, params).sendAsync(new RxSyncanoCallback<>(subscriber)));
+    }
+
+    public static Observable<Trace> runScriptEndpoint(Syncano syncano, String name) {
+        return Observable.create((OnSubscribe<Trace>) subscriber ->
+                syncano.runScriptEndpoint(name).sendAsync(new RxSyncanoCallback<>(subscriber)));
+    }
+
+    public static Observable<Trace> runScriptEndpoint(Syncano syncano, String name, JsonObject params) {
+        return Observable.create((OnSubscribe<Trace>) subscriber ->
+                syncano.runScriptEndpoint(name, params).sendAsync(new RxSyncanoCallback<>(subscriber)));
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    // Script Methods
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    public static Observable<Trace> run(Script script){
+        return Observable.create((OnSubscribe<Trace>) subscriber ->
+                script.run(new RxSyncanoCallback<>(subscriber)));
+    }
+
+    public static Observable<Trace> run(Script script, JsonObject payload){
+        return Observable.create((OnSubscribe<Trace>) subscriber ->
+                script.run(new RxSyncanoCallback<>(subscriber)));
+    }
+
+    public static Observable<Trace> runScript(Syncano syncano, int id){
+        return Observable.create((OnSubscribe<Trace>)
+                subscriber -> syncano.runScript(id).sendAsync(new RxSyncanoCallback<>(subscriber)));
+    }
+
+    public static Observable<Trace> runScript(Syncano syncano, int id, JsonObject params){
+        return Observable.create((OnSubscribe<Trace>) subscriber ->
+                syncano.runScript(id, params).sendAsync(new RxSyncanoCallback<>(subscriber)));
+    }
+
+    public static Observable<Trace> runScript(Syncano syncano, Script script){
+        return Observable.create((OnSubscribe<Trace>) subscriber ->
+                syncano.runScript(script).sendAsync(new RxSyncanoCallback<>(subscriber)));
+    }
+
+    public static Observable<Trace> runScript(Syncano syncano, Script script, JsonObject params){
+        return Observable.create((OnSubscribe<Trace>) subscriber ->
+                syncano.runScript(script, params).sendAsync(new RxSyncanoCallback<>(subscriber)));
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    // Trace Methods
+    ////////////////////////////////////////////////////////////////////////////////////////////////
     public static Observable<Trace> fetch(Trace trace) {
         return Observable.create((OnSubscribe<Trace>) subscriber ->
                 trace.fetch(new RxSyncanoCallback<>(subscriber)));
     }
 
-    ////////////////////////////////////////////////////////////////////////////////////////////////
-    // Syncano Methods
-    ////////////////////////////////////////////////////////////////////////////////////////////////
-    public static <T extends SyncanoObject> Observable<T> getObject(Syncano syncano, T t){
-        return Observable.create((OnSubscribe<T>) subscriber ->
-                syncano.getObject(t).sendAsync(new RxSyncanoCallback<>(subscriber)));
+    public static Observable<Trace> getTrace(Syncano syncano, Trace trace) {
+        return Observable.create((OnSubscribe<Trace>) subscriber ->
+                syncano.getTrace(trace).sendAsync(new RxSyncanoCallback<>(subscriber)));
     }
 
-    public static <T extends SyncanoObject> Observable<T> getObject(Syncano syncano, Class<T> clazz,  int id) {
-        return Observable.create((OnSubscribe<T>) subscriber ->
-                syncano.getObject(clazz, id).sendAsync(new RxSyncanoCallback<T>(subscriber)));
-    }
-
-    public static <T extends SyncanoObject> Observable<T> getObjects(Syncano syncano, Class<T> clazz){
-        return Observable.create((OnSubscribe<T>) subscriber ->
-                syncano.getObjects(clazz).sendAsync(new RxSyncanoListCallback<>(subscriber)));
-    }
-
-    public static <T extends SyncanoObject> Observable<T> getObjects(Syncano syncano, Class<T> clazz, String pageUrl){
-        return Observable.create((OnSubscribe<T>) subscriber ->
-                syncano.getObjects(clazz, pageUrl).sendAsync(new RxSyncanoListCallback<>(subscriber)));
-    }
-
-    public static <T extends SyncanoObject> Observable<T> deleteObject(Syncano syncano, Class<T> clazz, int id) {
-        return Observable.create((OnSubscribe<T>) subscriber -> syncano.deleteObject(clazz, id));
-    }
-
-    public static <T extends SyncanoObject> Observable<T> deleteObject(Syncano syncano, T t) {
-        return Observable.create((OnSubscribe<T>) subscriber ->
-                syncano.deleteObject(t).sendAsync(new RxSyncanoCallback<>(subscriber)));
-    }
-
-    public static <T extends SyncanoObject> Observable<T> createObject(Syncano syncano,T t){
-        return Observable.create((OnSubscribe<T>) subscriber ->
-                syncano.createObject(t).sendAsync(new RxSyncanoCallback<>(subscriber)));
-    }
-
-    public static <T extends SyncanoObject> Observable<T> createObject(Syncano syncano, T t, boolean updateGivenObject) {
-        return Observable.create((OnSubscribe<T>) subscriber ->
-                syncano.createObject(t, updateGivenObject).sendAsync(new RxSyncanoCallback<>(subscriber)));
-    }
-
-    public static <T extends AbstractUser> Observable<T> fetchCurrentUser(Syncano syncano, Class<T> clazz){
-        return Observable.create((OnSubscribe<T>) subscriber ->
-                syncano.fetchCurrentUser(clazz).sendAsync(new RxSyncanoCallback<>(subscriber)));
-    }
-
-    public static <T extends AbstractUser> Observable<T> fetchCurrentUser(Syncano syncano, T user) {
-        return Observable.create((OnSubscribe<T>) subscriber ->
-                syncano.fetchCurrentUser(user).sendAsync(new RxSyncanoCallback<>(subscriber)));
-    }
-
-    public static <T extends SyncanoObject> Observable<T> getObjectsDataEndpoint(Syncano syncano, Class<T> clazz, String dataEndpoint) {
-        return Observable.create((OnSubscribe<T>) subscriber ->
-                syncano.getObjectsDataEndpoint(clazz, dataEndpoint).sendAsync(new RxSyncanoListCallback<>(subscriber)));
+    public static Observable<Trace> getTrace(Syncano syncano, int scriptId, int traceId) {
+        return Observable.create((OnSubscribe<Trace>) subscriber ->
+                syncano.getTrace(scriptId, traceId).sendAsync(new RxSyncanoCallback<>(subscriber)));
     }
 
     private SyncanoObservable(){
