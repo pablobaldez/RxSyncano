@@ -1,12 +1,16 @@
 package rx.syncano;
 
 import com.google.gson.JsonObject;
+import com.syncano.library.ChannelConnection;
 import com.syncano.library.Syncano;
 import com.syncano.library.api.IncrementBuilder;
 import com.syncano.library.api.RequestGet;
 import com.syncano.library.api.Where;
 import com.syncano.library.choice.SocialAuthBackend;
 import com.syncano.library.data.AbstractUser;
+import com.syncano.library.data.Channel;
+import com.syncano.library.data.Group;
+import com.syncano.library.data.Notification;
 import com.syncano.library.data.Profile;
 import com.syncano.library.data.Script;
 import com.syncano.library.data.ScriptEndpoint;
@@ -19,6 +23,7 @@ import rx.Observable;
 import rx.Observable.OnSubscribe;
 import rx.Scheduler;
 import rx.Subscriber;
+import rx.functions.Action0;
 
 /**
  * Created by pablobaldez on 24/04/16.
@@ -616,6 +621,51 @@ public class SyncanoObservable {
     public static Observable<Trace> getTrace(Syncano syncano, int scriptId, int traceId) {
         return Observable.create((OnSubscribe<Trace>) subscriber ->
                 syncano.getTrace(scriptId, traceId).sendAsync(new RxSyncanoCallback<>(subscriber)));
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    // Channel Methods
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    public static Observable<Notification> startChannelConnection(Syncano syncano, String channelName){
+        ChannelConnection channelConnection = new ChannelConnection(syncano);
+        return Observable.create((OnSubscribe<Notification>) subscriber -> {
+            RxChannelConnectionListener listener = new RxChannelConnectionListener(subscriber);
+            channelConnection.setChannelConnectionListener(listener);
+            channelConnection.start(channelName);
+        }).doOnUnsubscribe(channelConnection::stop);
+    }
+
+    public static Observable<Notification> startChannelConnection(Syncano syncano, String channelName, String roomName){
+        ChannelConnection channelConnection = new ChannelConnection(syncano);
+        return Observable.create((OnSubscribe<Notification>) subscriber -> {
+            RxChannelConnectionListener listener = new RxChannelConnectionListener(subscriber);
+            channelConnection.setChannelConnectionListener(listener);
+            channelConnection.start(channelName, roomName);
+        }).doOnUnsubscribe(channelConnection::stop);
+    }
+
+    public static Observable<Notification> startChannelConnection(Syncano syncano, String channelName, String roomName, int lastId){
+        ChannelConnection channelConnection = new ChannelConnection(syncano);
+        return Observable.create((OnSubscribe<Notification>) subscriber -> {
+            RxChannelConnectionListener listener = new RxChannelConnectionListener(subscriber);
+            channelConnection.setChannelConnectionListener(listener);
+            channelConnection.start(channelName, roomName, lastId);
+        }).doOnUnsubscribe(channelConnection::stop);
+    }
+
+    public static Observable<Notification> publishOnChannel(Syncano syncano, String channelName, Notification notification) {
+        return Observable.create((OnSubscribe<Notification>) subscriber ->
+                syncano.publishOnChannel(channelName, notification).sendAsync(new RxSyncanoCallback<>(subscriber)));
+    }
+
+    public static Observable<Notification> getChannelHistory(Syncano syncano, String channelName) {
+        return Observable.create((OnSubscribe<Notification>) subscriber ->
+                syncano.getChannelsHistory(channelName).sendAsync(new RxSyncanoListCallback<>(subscriber)));
+    }
+
+    public static Observable<Notification> getChannelHistory(Syncano syncano, String channelName, String roomName) {
+        return Observable.create((OnSubscribe<Notification>) subscriber ->
+                syncano.getChannelsHistory(channelName).sendAsync(new RxSyncanoListCallback<>(subscriber)));
     }
 
     private SyncanoObservable(){

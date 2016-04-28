@@ -47,7 +47,5 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.3.0'
     compile 'io.reactivex:rxjava:1.0.7'
-    compile 'com.infstory:rxbolts:1.0.1'
     compile 'io.syncano:library:4.1.0'
-    compile 'com.parse:parse-android:1.13.0'
 }
