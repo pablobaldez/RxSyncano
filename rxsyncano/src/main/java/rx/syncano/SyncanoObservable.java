@@ -8,8 +8,6 @@ import com.syncano.library.api.RequestGet;
 import com.syncano.library.api.Where;
 import com.syncano.library.choice.SocialAuthBackend;
 import com.syncano.library.data.AbstractUser;
-import com.syncano.library.data.Channel;
-import com.syncano.library.data.Group;
 import com.syncano.library.data.Notification;
 import com.syncano.library.data.Profile;
 import com.syncano.library.data.Script;
@@ -23,7 +21,6 @@ import rx.Observable;
 import rx.Observable.OnSubscribe;
 import rx.Scheduler;
 import rx.Subscriber;
-import rx.functions.Action0;
 
 /**
  * Created by pablobaldez on 24/04/16.
