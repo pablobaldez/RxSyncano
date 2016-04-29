@@ -104,26 +104,99 @@ public class SyncanoObservable {
                 t.fetch(new RxSyncanoCallback<>(subscriber)));
     }
 
+    /**
+     * Generate the Observable that, when a {@link Subscriber} subscribes to it, will increment some
+     * field from the data object
+     *
+     * <dl>
+     *  <dt><b>Scheduler:</b></dt>
+     *  <dd>{@code create} does not operate by default on a particular {@link Scheduler}.</dd>
+     * </dl>
+     *
+     * @param syncano Syncano instance used in this operation
+     * @param t Data object to be fetched
+     * @param incrementBuilder builder used to increment the field
+     * @param <T> the type of the items that this Observable emits
+     * @return an Observable that, when a {@link Subscriber} subscribes to it, will execute the
+     * specified function
+     */
     public static <T extends SyncanoObject> Observable<T> addition(Syncano syncano, T t, IncrementBuilder incrementBuilder) {
         return Observable.create((OnSubscribe<T>) subscriber ->
                 syncano.addition(t, incrementBuilder).sendAsync(new RxSyncanoCallback<>(subscriber)));
     }
 
+    /**
+     * Generate the Observable that, when a {@link Subscriber} subscribes to it, will increment some
+     * field from the data object referent to id and type passed
+     *
+     * <dl>
+     *  <dt><b>Scheduler:</b></dt>
+     *  <dd>{@code create} does not operate by default on a particular {@link Scheduler}.</dd>
+     * </dl>
+     *
+     * @param syncano Syncano instance used in this operation
+     * @param clazz Syncano class that will be requested
+     * @param id identifier used as reference
+     * @param incrementBuilder builder used to increment the field
+     * @param <T> the type of the items that this Observable emits
+     * @return an Observable that, when a {@link Subscriber} subscribes to it, will execute the
+     * specified function
+     */
     public static <T extends SyncanoObject> Observable<T> addition(Syncano syncano, Class<T> clazz, int id, IncrementBuilder incrementBuilder){
         return Observable.create((OnSubscribe<T>) subscriber ->
                 syncano.addition(clazz, id, incrementBuilder).sendAsync(new RxSyncanoCallback<>(subscriber)));
     }
 
+    /**
+     * Generate the Observable that, when a {@link Subscriber} subscribes to it, will load an object
+     * using an Syncano instance for it
+     *
+     * <dl>
+     *  <dt><b>Scheduler:</b></dt>
+     *  <dd>{@code create} does not operate by default on a particular {@link Scheduler}.</dd>
+     * </dl>
+     *
+     * @param syncano Syncano instance used in this operation
+     * @param t Data object to be fetched loaded
+     * @param <T> the type of the items that this Observable emits
+     * @return an Observable that, when a {@link Subscriber} subscribes to it, will execute the
+     * specified function
+     */
     public static <T extends SyncanoObject> Observable<T> getObject(Syncano syncano, T t){
         return Observable.create((OnSubscribe<T>) subscriber ->
                 syncano.getObject(t).sendAsync(new RxSyncanoCallback<>(subscriber)));
     }
 
+    /**
+     * Generate the Observable that, when a {@link Subscriber} subscribes to it, will load an object
+     * using an Syncano instance for it
+     *
+     * <dl>
+     *  <dt><b>Scheduler:</b></dt>
+     *  <dd>{@code create} does not operate by default on a particular {@link Scheduler}.</dd>
+     * </dl>
+     *
+     * @param syncano Syncano instance used in this operation
+     * @param clazz Syncano class that will be requested
+     * @param id identifier used as reference
+     * @param <T> the type of the items that this Observable emits
+     * @return an Observable that, when a {@link Subscriber} subscribes to it, will execute the
+     * specified function
+     */
     public static <T extends SyncanoObject> Observable<T> getObject(Syncano syncano, Class<T> clazz,  int id) {
         return Observable.create((OnSubscribe<T>) subscriber ->
                 syncano.getObject(clazz, id).sendAsync(new RxSyncanoCallback<>(subscriber)));
     }
 
+    /**
+     * Generate the Observable that, when a {@link Subscriber} subscribes to it, will load all data
+     * objects of this class
+     *
+     * @param syncano
+     * @param clazz
+     * @param <T>
+     * @return
+     */
     public static <T extends SyncanoObject> Observable<T> getObjects(Syncano syncano, Class<T> clazz){
         return Observable.create((OnSubscribe<T>) subscriber ->
                 syncano.getObjects(clazz).sendAsync(new RxSyncanoListCallback<>(subscriber)));
@@ -341,7 +414,7 @@ public class SyncanoObservable {
      *  <dd>{@code create} does not operate by default on a particular {@link Scheduler}.</dd>
      * </dl>
      *
-     * @param clazz Syncano class that will be requested.
+     * @param clazz Syncano class that will be requested
      * @param <T> the type of the items that this Observable emits
      * @return an Observable that, when a {@link Subscriber} subscribes to it, will execute the specified
      *         function
