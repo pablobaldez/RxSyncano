@@ -42,7 +42,6 @@ import rx.Subscriber;
  *
  * Uses Observable to wraps all callback functions
  */
-@SuppressWarnings("unused")
 public class SyncanoObservable {
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
