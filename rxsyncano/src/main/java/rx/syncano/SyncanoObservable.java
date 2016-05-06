@@ -20,8 +20,6 @@ import com.syncano.library.simple.RequestBuilder;
 
 import rx.Observable;
 import rx.Observable.OnSubscribe;
-import rx.Scheduler;
-import rx.Subscriber;
 
 /**
  * Created by pablobaldez on 24/04/16.
@@ -48,17 +46,17 @@ public class SyncanoObservable {
     // SyncanoObject Methods
     ////////////////////////////////////////////////////////////////////////////////////////////////
     /**
-     * Generate the Observable that, when a {@link Subscriber} subscribes to it, will save the data
+     * Generate the Observable that, when a Subscriber subscribes to it, will save the data
      * object
      *
      * <dl>
      *  <dt><b>Scheduler:</b></dt>
-     *  <dd>{@code create} does not operate by default on a particular {@link Scheduler}.</dd>
+     *  <dd>{@code create} does not operate by default on a particular Scheduler.</dd>
      * </dl>
      *
      * @param t Data object to be saved
      * @param <T> the type of the items that this Observable emits
-     * @return an Observable that, when a {@link Subscriber} subscribes to it, will execute the
+     * @return an Observable that, when a Subscriber subscribes to it, will execute the
      * specified function
      */
     public static <T extends SyncanoObject> Observable<T> save(T t){
@@ -67,17 +65,17 @@ public class SyncanoObservable {
     }
 
     /**
-     * Generate the Observable that, when a {@link Subscriber} subscribes to it, will delete the
+     * Generate the Observable that, when a Subscriber subscribes to it, will delete the
      * data object
      *
      * <dl>
      *  <dt><b>Scheduler:</b></dt>
-     *  <dd>{@code create} does not operate by default on a particular {@link Scheduler}.</dd>
+     *  <dd>{@code create} does not operate by default on a particular Scheduler.</dd>
      * </dl>
      *
      * @param t Data object to be deleted
      * @param <T> the type of the items that this Observable emits
-     * @return an Observable that, when a {@link Subscriber} subscribes to it, will execute the
+     * @return an Observable that, when a Subscriber subscribes to it, will execute the
      * specified function
      */
     public static <T extends SyncanoObject> Observable<T> delete(T t) {
@@ -86,17 +84,17 @@ public class SyncanoObservable {
     }
 
     /**
-     * Generate the Observable that, when a {@link Subscriber} subscribes to it, will fetch the
+     * Generate the Observable that, when a Subscriber subscribes to it, will fetch the
      * data object
      *
      * <dl>
      *  <dt><b>Scheduler:</b></dt>
-     *  <dd>{@code create} does not operate by default on a particular {@link Scheduler}.</dd>
+     *  <dd>{@code create} does not operate by default on a particular Scheduler.</dd>
      * </dl>
      *
      * @param t Data object to be fetched
      * @param <T> the type of the items that this Observable emits
-     * @return an Observable that, when a {@link Subscriber} subscribes to it, will execute the
+     * @return an Observable that, when a Subscriber subscribes to it, will execute the
      * specified function
      */
     public static <T extends SyncanoObject> Observable<T> fetch(T t) {
@@ -105,19 +103,19 @@ public class SyncanoObservable {
     }
 
     /**
-     * Generate the Observable that, when a {@link Subscriber} subscribes to it, will increment some
+     * Generate the Observable that, when a Subscriber subscribes to it, will increment some
      * field from the data object
      *
      * <dl>
      *  <dt><b>Scheduler:</b></dt>
-     *  <dd>{@code create} does not operate by default on a particular {@link Scheduler}.</dd>
+     *  <dd>{@code create} does not operate by default on a particular Scheduler.</dd>
      * </dl>
      *
      * @param syncano Syncano instance used in this operation
      * @param t Data object to be fetched
      * @param incrementBuilder builder used to increment the field
      * @param <T> the type of the items that this Observable emits
-     * @return an Observable that, when a {@link Subscriber} subscribes to it, will execute the
+     * @return an Observable that, when a Subscriber subscribes to it, will execute the
      * specified function
      */
     public static <T extends SyncanoObject> Observable<T> addition(Syncano syncano, T t, IncrementBuilder incrementBuilder) {
@@ -126,12 +124,12 @@ public class SyncanoObservable {
     }
 
     /**
-     * Generate the Observable that, when a {@link Subscriber} subscribes to it, will increment some
+     * Generate the Observable that, when a Subscriber subscribes to it, will increment some
      * field from the data object referent to id and type passed
      *
      * <dl>
      *  <dt><b>Scheduler:</b></dt>
-     *  <dd>{@code create} does not operate by default on a particular {@link Scheduler}.</dd>
+     *  <dd>{@code create} does not operate by default on a particular Scheduler.</dd>
      * </dl>
      *
      * @param syncano Syncano instance used in this operation
@@ -139,7 +137,7 @@ public class SyncanoObservable {
      * @param id identifier used as reference
      * @param incrementBuilder builder used to increment the field
      * @param <T> the type of the items that this Observable emits
-     * @return an Observable that, when a {@link Subscriber} subscribes to it, will execute the
+     * @return an Observable that, when a Subscriber subscribes to it, will execute the
      * specified function
      */
     public static <T extends SyncanoObject> Observable<T> addition(Syncano syncano, Class<T> clazz, int id, IncrementBuilder incrementBuilder){
@@ -148,18 +146,18 @@ public class SyncanoObservable {
     }
 
     /**
-     * Generate the Observable that, when a {@link Subscriber} subscribes to it, will load an object
+     * Generate the Observable that, when a Subscriber subscribes to it, will load an object
      * using an Syncano instance for it
      *
      * <dl>
      *  <dt><b>Scheduler:</b></dt>
-     *  <dd>{@code create} does not operate by default on a particular {@link Scheduler}.</dd>
+     *  <dd>{@code create} does not operate by default on a particular Scheduler.</dd>
      * </dl>
      *
      * @param syncano Syncano instance used in this operation
      * @param t Data object to be fetched loaded
      * @param <T> the type of the items that this Observable emits
-     * @return an Observable that, when a {@link Subscriber} subscribes to it, will execute the
+     * @return an Observable that, when a Subscriber subscribes to it, will execute the
      * specified function
      */
     public static <T extends SyncanoObject> Observable<T> getObject(Syncano syncano, T t){
@@ -168,19 +166,19 @@ public class SyncanoObservable {
     }
 
     /**
-     * Generate the Observable that, when a {@link Subscriber} subscribes to it, will load an object
+     * Generate the Observable that, when a Subscriber subscribes to it, will load an object
      * using an Syncano instance for it
      *
      * <dl>
      *  <dt><b>Scheduler:</b></dt>
-     *  <dd>{@code create} does not operate by default on a particular {@link Scheduler}.</dd>
+     *  <dd>{@code create} does not operate by default on a particular Scheduler.</dd>
      * </dl>
      *
      * @param syncano Syncano instance used in this operation
      * @param clazz Syncano class that will be requested
      * @param id identifier used as reference
      * @param <T> the type of the items that this Observable emits
-     * @return an Observable that, when a {@link Subscriber} subscribes to it, will execute the
+     * @return an Observable that, when a Subscriber subscribes to it, will execute the
      * specified function
      */
     public static <T extends SyncanoObject> Observable<T> getObject(Syncano syncano, Class<T> clazz,  int id) {
@@ -189,18 +187,18 @@ public class SyncanoObservable {
     }
 
     /**
-     * Generate the Observable that, when a {@link Subscriber} subscribes to it, will load all data
+     * Generate the Observable that, when a Subscriber subscribes to it, will load all data
      * objects of this class
      *
      * <dl>
      *  <dt><b>Scheduler:</b></dt>
-     *  <dd>{@code create} does not operate by default on a particular {@link Scheduler}.</dd>
+     *  <dd>{@code create} does not operate by default on a particular Scheduler.</dd>
      * </dl>
      *
      * @param syncano Syncano instance used in this operation
      * @param clazz Syncano class that will be requested
      * @param <T> the type of the items that this Observable emits
-     * @return an Observable that, when a {@link Subscriber} subscribes to it, will execute the
+     * @return an Observable that, when a Subscriber subscribes to it, will execute the
      * specified function
      */
     public static <T extends SyncanoObject> Observable<T> getObjects(Syncano syncano, Class<T> clazz){
@@ -209,20 +207,20 @@ public class SyncanoObservable {
     }
 
     /**
-     * Generate the Observable that, when a {@link Subscriber} subscribes to it, will load all data
+     * Generate the Observable that, when a Subscriber subscribes to it, will load all data
      * objects of this class from specific page.
      * You can get this url by calling ResponseGetList.getNextPageUrl() or getPreviousPageUrl()
      *
      * <dl>
      *  <dt><b>Scheduler:</b></dt>
-     *  <dd>{@code create} does not operate by default on a particular {@link Scheduler}.</dd>
+     *  <dd>{@code create} does not operate by default on a particular Scheduler.</dd>
      * </dl>
      *
      * @param syncano Syncano instance used in this operation
      * @param clazz Syncano class that will be requested
      * @param pageUrl page to request
      * @param <T> the type of the items that this Observable emits
-     * @return an Observable that, when a {@link Subscriber} subscribes to it, will execute the
+     * @return an Observable that, when a Subscriber subscribes to it, will execute the
      * specified function
      */
     public static <T extends SyncanoObject> Observable<T> getObjects(Syncano syncano, Class<T> clazz, String pageUrl){
@@ -231,19 +229,19 @@ public class SyncanoObservable {
     }
 
     /**
-     * Generate the Observable that, when a {@link Subscriber} subscribes to it, will Delete a Data
+     * Generate the Observable that, when a Subscriber subscribes to it, will Delete a Data
      * Object on Syncano using an id as reference
      *
      * <dl>
      *  <dt><b>Scheduler:</b></dt>
-     *  <dd>{@code create} does not operate by default on a particular {@link Scheduler}.</dd>
+     *  <dd>{@code create} does not operate by default on a particular Scheduler.</dd>
      * </dl>
      *
      * @param syncano Syncano instance used in this operation
      * @param clazz Syncano class that will be requested
      * @param id the id of object to be deleted
      * @param <T> the type of the items that this Observable emits
-     * @return an Observable that, when a {@link Subscriber} subscribes to it, will execute the
+     * @return an Observable that, when a Subscriber subscribes to it, will execute the
      * specified function
      */
     public static <T extends SyncanoObject> Observable<T> deleteObject(Syncano syncano, Class<T> clazz, int id) {
@@ -251,13 +249,13 @@ public class SyncanoObservable {
     }
 
     /**
-     * Generate the Observable that, when a {@link Subscriber} subscribes to it, will Delete a Data
+     * Generate the Observable that, when a Subscriber subscribes to it, will Delete a Data
      * Object on Syncano
      *
      * @param syncano Syncano instance used in this operation
      * @param t Syncano object to be deleted
      * @param <T> the type of the items that this Observable emits
-     * @return an Observable that, when a {@link Subscriber} subscribes to it, will execute the
+     * @return an Observable that, when a Subscriber subscribes to it, will execute the
      * specified function
      */
     public static <T extends SyncanoObject> Observable<T> deleteObject(Syncano syncano, T t) {
@@ -266,18 +264,18 @@ public class SyncanoObservable {
     }
 
     /**
-     * Generate the Observable that, when a {@link Subscriber} subscribes to it, will Create an
+     * Generate the Observable that, when a Subscriber subscribes to it, will Create an
      * object on Syncano
      *
      * <dl>
      *  <dt><b>Scheduler:</b></dt>
-     *  <dd>{@code create} does not operate by default on a particular {@link Scheduler}.</dd>
+     *  <dd>{@code create} does not operate by default on a particular Scheduler.</dd>
      * </dl>
      *
      * @param syncano Syncano instance used in this operation
      * @param t Syncano object to be created
      * @param <T> the type of the items that this Observable emits
-     * @return an Observable that, when a {@link Subscriber} subscribes to it, will execute the
+     * @return an Observable that, when a Subscriber subscribes to it, will execute the
      * specified function
      */
     public static <T extends SyncanoObject> Observable<T> createObject(Syncano syncano,T t){
@@ -286,12 +284,12 @@ public class SyncanoObservable {
     }
 
     /**
-     * Generate the Observable that, when a {@link Subscriber} subscribes to it, will Create an
+     * Generate the Observable that, when a Subscriber subscribes to it, will Create an
      * object on Syncano an update the properties of the given object
      *
      * <dl>
      *  <dt><b>Scheduler:</b></dt>
-     *  <dd>{@code create} does not operate by default on a particular {@link Scheduler}.</dd>
+     *  <dd>{@code create} does not operate by default on a particular Scheduler.</dd>
      * </dl>
      *
      * @param syncano Syncano instance used in this operation
@@ -299,7 +297,7 @@ public class SyncanoObservable {
      * @param updateGivenObject Should update fields in passed object, or only return the new
      *                          created object
      * @param <T> the type of the items that this Observable emits
-     * @return an Observable that, when a {@link Subscriber} subscribes to it, will execute the
+     * @return an Observable that, when a Subscriber subscribes to it, will execute the
      * specified function
      */
     public static <T extends SyncanoObject> Observable<T> createObject(Syncano syncano, T t, boolean updateGivenObject) {
@@ -308,18 +306,18 @@ public class SyncanoObservable {
     }
 
     /**
-     * Generate the Observable that, when a {@link Subscriber} subscribes to it, will Update Data
+     * Generate the Observable that, when a Subscriber subscribes to it, will Update Data
      * Object on Syncano
      *
      * <dl>
      *  <dt><b>Scheduler:</b></dt>
-     *  <dd>{@code create} does not operate by default on a particular {@link Scheduler}.</dd>
+     *  <dd>{@code create} does not operate by default on a particular Scheduler.</dd>
      * </dl>
      *
      * @param syncano Syncano instance used in this operation
      * @param t Syncano object to be updated
      * @param <T> the type of the items that this Observable emits
-     * @return an Observable that, when a {@link Subscriber} subscribes to it, will execute the
+     * @return an Observable that, when a Subscriber subscribes to it, will execute the
      * specified function
      */
     public static <T extends SyncanoObject> Observable<T> updateObject(Syncano syncano, T t) {
@@ -328,12 +326,12 @@ public class SyncanoObservable {
     }
 
     /**
-     * Generate the Observable that, when a {@link Subscriber} subscribes to it, will Update Data
+     * Generate the Observable that, when a Subscriber subscribes to it, will Update Data
      * Object on Syncano
      *
      * <dl>
      *  <dt><b>Scheduler:</b></dt>
-     *  <dd>{@code create} does not operate by default on a particular {@link Scheduler}.</dd>
+     *  <dd>{@code create} does not operate by default on a particular Scheduler.</dd>
      * </dl>
      *
      * @param syncano Syncano instance used in this operation
@@ -341,7 +339,7 @@ public class SyncanoObservable {
      * @param updateGivenObject Should update fields in passed object, or only return the new
      *                          created object
      * @param <T> the type of the items that this Observable emits
-     * @return an Observable that, when a {@link Subscriber} subscribes to it, will execute the
+     * @return an Observable that, when a Subscriber subscribes to it, will execute the
      * specified function
      */
     public static <T extends SyncanoObject> Observable<T> updateObject(Syncano syncano, T t, boolean updateGivenObject) {
@@ -350,19 +348,19 @@ public class SyncanoObservable {
     }
 
     /**
-     * Generate the Observable that, when a {@link Subscriber} subscribes to it, will Get a list of
+     * Generate the Observable that, when a Subscriber subscribes to it, will Get a list of
      * Data Objects associated with a given Class
      *
      * <dl>
      *  <dt><b>Scheduler:</b></dt>
-     *  <dd>{@code create} does not operate by default on a particular {@link Scheduler}.</dd>
+     *  <dd>{@code create} does not operate by default on a particular Scheduler.</dd>
      * </dl>
      *
      * @param syncano Syncano instance used in this operation
      * @param clazz Syncano class that will be requested
      * @param dataEndpoint name of endpoint to be executed
      * @param <T> the type of the items that this Observable emits
-     * @return an Observable that, when a {@link Subscriber} subscribes to it, will execute the
+     * @return an Observable that, when a Subscriber subscribes to it, will execute the
      * specified function
      */
     public static <T extends SyncanoObject> Observable<T> getObjectsDataEndpoint(Syncano syncano, Class<T> clazz, String dataEndpoint) {
@@ -371,18 +369,18 @@ public class SyncanoObservable {
     }
 
     /**
-     * Generate the Observable that, when a {@link Subscriber} subscribes to it, will Renders a
+     * Generate the Observable that, when a Subscriber subscribes to it, will Renders a
      * template with objects got from given request
      *
      * <dl>
      *  <dt><b>Scheduler:</b></dt>
-     *  <dd>{@code create} does not operate by default on a particular {@link Scheduler}.</dd>
+     *  <dd>{@code create} does not operate by default on a particular Scheduler.</dd>
      * </dl>
      *
      * @param syncano Syncano instance used in this operation
      * @param requestGet request that will be used to get objects
      * @param templateName name of a template that will be used to render result
-     * @return an Observable that, when a {@link Subscriber} subscribes to it, will execute the
+     * @return an Observable that, when a Subscriber subscribes to it, will execute the
      * specified function
      */
     public static Observable<String> getObjectsWithTemplate(Syncano syncano, RequestGet requestGet, String templateName){
@@ -394,19 +392,19 @@ public class SyncanoObservable {
     // AbstractUser Methods
     ////////////////////////////////////////////////////////////////////////////////////////////////
     /**
-     * Generate the Observable that, when a {@link Subscriber} subscribes to it, will Create a new
+     * Generate the Observable that, when a Subscriber subscribes to it, will Create a new
      * custom User.
      *
      * To be able to register Users you'll have to create an API Key that has allow_user_create flag
      * set to true.
      * <dl>
      *  <dt><b>Scheduler:</b></dt>
-     *  <dd>{@code create} does not operate by default on a particular {@link Scheduler}.</dd>
+     *  <dd>{@code create} does not operate by default on a particular Scheduler.</dd>
      * </dl>
      *
      * @param t User to be registered
      * @param <T> the type of the items that this Observable emits
-     * @return an Observable that, when a {@link Subscriber} subscribes to it, will execute the
+     * @return an Observable that, when a Subscriber subscribes to it, will execute the
      * specified function
      */
     public static <T extends AbstractUser> Observable<T> register(T t){
@@ -415,16 +413,16 @@ public class SyncanoObservable {
     }
 
     /**
-     * Generate the Observable that, when a {@link Subscriber} subscribes to it, will fetch the user
+     * Generate the Observable that, when a Subscriber subscribes to it, will fetch the user
      *
      * <dl>
      *  <dt><b>Scheduler:</b></dt>
-     *  <dd>{@code create} does not operate by default on a particular {@link Scheduler}.</dd>
+     *  <dd>{@code create} does not operate by default on a particular Scheduler.</dd>
      * </dl>
      *
      * @param t User to be fetched
      * @param <T> the type of the items that this Observable emits
-     * @return an Observable that, when a {@link Subscriber} subscribes to it, will execute the
+     * @return an Observable that, when a Subscriber subscribes to it, will execute the
      * specified function
      */
     public static <T extends AbstractUser> Observable<T> fetch(T t) {
@@ -433,17 +431,17 @@ public class SyncanoObservable {
     }
 
     /**
-     * Generate the Observable that, when a {@link Subscriber} subscribes to it, will fetch the user
+     * Generate the Observable that, when a Subscriber subscribes to it, will fetch the user
      * profile
      * <dl>
      *  <dt><b>Scheduler:</b></dt>
-     *  <dd>{@code create} does not operate by default on a particular {@link Scheduler}.</dd>
+     *  <dd>{@code create} does not operate by default on a particular Scheduler.</dd>
      * </dl>
      *
      * @param u user profile to be fetched
      * @param <T> type of Profile and items emitted by Observable
      * @param <U> type of Abstract user object
-     * @return an Observable that, when a {@link Subscriber} subscribes to it, will execute the
+     * @return an Observable that, when a Subscriber subscribes to it, will execute the
      * specified function
      */
     public static <T extends Profile, U extends AbstractUser<? extends T>> Observable<T> fetchProfile(U u) {
@@ -452,17 +450,17 @@ public class SyncanoObservable {
     }
 
     /**
-     * Generate the Observable that, when a {@link Subscriber} subscribes to it, will authenticate a
+     * Generate the Observable that, when a Subscriber subscribes to it, will authenticate a
      * User
      *
      * <dl>
      *  <dt><b>Scheduler:</b></dt>
-     *  <dd>{@code create} does not operate by default on a particular {@link Scheduler}.</dd>
+     *  <dd>{@code create} does not operate by default on a particular Scheduler.</dd>
      * </dl>
      *
      * @param t user to be authenticated
      * @param <T> the type of the items that this Observable emits
-     * @return an Observable that, when a {@link Subscriber} subscribes to it, will execute the
+     * @return an Observable that, when a Subscriber subscribes to it, will execute the
      * specified function
      */
     public static <T extends AbstractUser> Observable<T> login(T t) {
@@ -471,17 +469,17 @@ public class SyncanoObservable {
     }
 
     /**
-     * Generate the Observable that, when a {@link Subscriber} subscribes to it, will authenticate a
+     * Generate the Observable that, when a Subscriber subscribes to it, will authenticate a
      * User from social networks
      *
      * <dl>
      *  <dt><b>Scheduler:</b></dt>
-     *  <dd>{@code create} does not operate by default on a particular {@link Scheduler}.</dd>
+     *  <dd>{@code create} does not operate by default on a particular Scheduler.</dd>
      * </dl>
      *
      * @param user user to be authenticated
      * @param <T> the type of the items that this Observable emits
-     * @return an Observable that, when a {@link Subscriber} subscribes to it, will execute the
+     * @return an Observable that, when a Subscriber subscribes to it, will execute the
      * specified function
      */
     public static <T extends AbstractUser> Observable<T> loginSocialUser(T user) {
@@ -490,19 +488,19 @@ public class SyncanoObservable {
     }
 
     /**
-     * Generate the Observable that, when a {@link Subscriber} subscribes to it, will Get details of
+     * Generate the Observable that, when a Subscriber subscribes to it, will Get details of
      * previously created User using an id as reference
      *
      * <dl>
      *  <dt><b>Scheduler:</b></dt>
-     *  <dd>{@code create} does not operate by default on a particular {@link Scheduler}.</dd>
+     *  <dd>{@code create} does not operate by default on a particular Scheduler.</dd>
      * </dl>
      *
      * @param syncano Syncano instance used in this operation
      * @param clazz Syncano class that will be requested
      * @param id id used as reference
      * @param <T> the type of the items that this Observable emits
-     * @return an Observable that, when a {@link Subscriber} subscribes to it, will execute the
+     * @return an Observable that, when a Subscriber subscribes to it, will execute the
      * specified function
      */
     public static <T extends AbstractUser> Observable<T> getUser(Syncano syncano, Class<T> clazz, int id){
@@ -511,17 +509,17 @@ public class SyncanoObservable {
     }
 
     /**
-     * Generate the Observable that, when a {@link Subscriber} subscribes to it, will Get details of
+     * Generate the Observable that, when a Subscriber subscribes to it, will Get details of
      * previously created User using an id as reference
      *
      * <dl>
      *  <dt><b>Scheduler:</b></dt>
-     *  <dd>{@code create} does not operate by default on a particular {@link Scheduler}.</dd>
+     *  <dd>{@code create} does not operate by default on a particular Scheduler.</dd>
      * </dl>
      *
      * @param syncano Syncano instance used in this operation
      * @param id id used as reference
-     * @return an Observable that, when a {@link Subscriber} subscribes to it, will execute the
+     * @return an Observable that, when a Subscriber subscribes to it, will execute the
      * specified function
      */
     public static Observable<User> getUser(Syncano syncano, int id) {
@@ -530,18 +528,18 @@ public class SyncanoObservable {
     }
 
     /**
-     * Generate the Observable that, when a {@link Subscriber} subscribes to it, will Get details of
+     * Generate the Observable that, when a Subscriber subscribes to it, will Get details of
      * previously created User
      *
      * <dl>
      *  <dt><b>Scheduler:</b></dt>
-     *  <dd>{@code create} does not operate by default on a particular {@link Scheduler}.</dd>
+     *  <dd>{@code create} does not operate by default on a particular Scheduler.</dd>
      * </dl>
      *
      * @param syncano Syncano instance used in this operation
      * @param clazz Syncano class that will be requested
      * @param <T> the type of the items that this Observable emits
-     * @return an Observable that, when a {@link Subscriber} subscribes to it, will execute the
+     * @return an Observable that, when a Subscriber subscribes to it, will execute the
      * specified function
      */
     public static <T extends AbstractUser> Observable<T> fetchCurrentUser(Syncano syncano, Class<T> clazz){
@@ -550,18 +548,18 @@ public class SyncanoObservable {
     }
 
     /**
-     * Generate the Observable that, when a {@link Subscriber} subscribes to it, will Get details of
+     * Generate the Observable that, when a Subscriber subscribes to it, will Get details of
      * previously created User
      *
      * <dl>
      *  <dt><b>Scheduler:</b></dt>
-     *  <dd>{@code create} does not operate by default on a particular {@link Scheduler}.</dd>
+     *  <dd>{@code create} does not operate by default on a particular Scheduler.</dd>
      * </dl>
      *
      * @param syncano Syncano instance used in this operation
      * @param user user to be fetched
      * @param <T> the type of the items that this Observable emits
-     * @return an Observable that, when a {@link Subscriber} subscribes to it, will execute the
+     * @return an Observable that, when a Subscriber subscribes to it, will execute the
      * specified function
      */
     public static <T extends AbstractUser> Observable<T> fetchCurrentUser(Syncano syncano, T user) {
@@ -570,18 +568,18 @@ public class SyncanoObservable {
     }
 
     /**
-     * Generate the Observable that, when a {@link Subscriber} subscribes to it, will Create a new
+     * Generate the Observable that, when a Subscriber subscribes to it, will Create a new
      * custom User
      *
      * <dl>
      *  <dt><b>Scheduler:</b></dt>
-     *  <dd>{@code create} does not operate by default on a particular {@link Scheduler}.</dd>
+     *  <dd>{@code create} does not operate by default on a particular Scheduler.</dd>
      * </dl>
      *
      * @param syncano Syncano instance used in this operation
      * @param t user to be created
      * @param <T> the type of the items that this Observable emits
-     * @return an Observable that, when a {@link Subscriber} subscribes to it, will execute the
+     * @return an Observable that, when a Subscriber subscribes to it, will execute the
      * specified function
      */
     public static <T extends AbstractUser> Observable<T> registerUser(Syncano syncano, T t){
@@ -590,16 +588,16 @@ public class SyncanoObservable {
     }
 
     /**
-     * Generate the Observable that, when a {@link Subscriber} subscribes to it, will Update a User
+     * Generate the Observable that, when a Subscriber subscribes to it, will Update a User
      *
      * <dl>
      *  <dt><b>Scheduler:</b></dt>
-     *  <dd>{@code create} does not operate by default on a particular {@link Scheduler}.</dd>
+     *  <dd>{@code create} does not operate by default on a particular Scheduler.</dd>
      * </dl>
      *
      * @param syncano Syncano instance used in this operation
      * @param user user to be updated
-     * @return an Observable that, when a {@link Subscriber} subscribes to it, will execute the
+     * @return an Observable that, when a Subscriber subscribes to it, will execute the
      * specified function
      */
     public static Observable<User> updateUser(Syncano syncano, User user) {
@@ -608,18 +606,18 @@ public class SyncanoObservable {
     }
 
     /**
-     * Generate the Observable that, when a {@link Subscriber} subscribes to it, will Update a
+     * Generate the Observable that, when a Subscriber subscribes to it, will Update a
      * custom User
      *
      * <dl>
      *  <dt><b>Scheduler:</b></dt>
-     *  <dd>{@code create} does not operate by default on a particular {@link Scheduler}.</dd>
+     *  <dd>{@code create} does not operate by default on a particular Scheduler.</dd>
      * </dl>
      *
      * @param syncano Syncano instance used in this operation
      * @param t object to be updated
      * @param <T> the type of the items that this Observable emits
-     * @return an Observable that, when a {@link Subscriber} subscribes to it, will execute the
+     * @return an Observable that, when a Subscriber subscribes to it, will execute the
      * specified function
      */
     public static <T extends AbstractUser> Observable<T> updateCustomUser(Syncano syncano, T t) {
@@ -628,18 +626,18 @@ public class SyncanoObservable {
     }
 
     /**
-     * Generate the Observable that, when a {@link Subscriber} subscribes to it, will Authenticate a
+     * Generate the Observable that, when a Subscriber subscribes to it, will Authenticate a
      * User
      *
      * <dl>
      *  <dt><b>Scheduler:</b></dt>
-     *  <dd>{@code create} does not operate by default on a particular {@link Scheduler}.</dd>
+     *  <dd>{@code create} does not operate by default on a particular Scheduler.</dd>
      * </dl>
      *
      * @param syncano Syncano instance used in this operation
      * @param t user to log in
      * @param <T> the type of the items that this Observable emits
-     * @return an Observable that, when a {@link Subscriber} subscribes to it, will execute the
+     * @return an Observable that, when a Subscriber subscribes to it, will execute the
      * specified function
      */
     public static <T extends AbstractUser> Observable<T> loginUser(Syncano syncano, T t) {
@@ -649,18 +647,18 @@ public class SyncanoObservable {
     }
 
     /**
-     * Generate the Observable that, when a {@link Subscriber} subscribes to it, will Authenticate a
+     * Generate the Observable that, when a Subscriber subscribes to it, will Authenticate a
      * User by username and password
      *
      * <dl>
      *  <dt><b>Scheduler:</b></dt>
-     *  <dd>{@code create} does not operate by default on a particular {@link Scheduler}.</dd>
+     *  <dd>{@code create} does not operate by default on a particular Scheduler.</dd>
      * </dl>
      *
      * @param syncano Syncano instance used in this operation
      * @param username user name from registration.
      * @param password user password.
-     * @return an Observable that, when a {@link Subscriber} subscribes to it, will execute the
+     * @return an Observable that, when a Subscriber subscribes to it, will execute the
      * specified function
      */
     public static Observable<User> loginUser(Syncano syncano, String username, String password) {
@@ -669,12 +667,12 @@ public class SyncanoObservable {
     }
 
     /**
-     * Generate the Observable that, when a {@link Subscriber} subscribes to it, will Authenticate a
+     * Generate the Observable that, when a Subscriber subscribes to it, will Authenticate a
      * custom User by username and password
      *
      * <dl>
      *  <dt><b>Scheduler:</b></dt>
-     *  <dd>{@code create} does not operate by default on a particular {@link Scheduler}.</dd>
+     *  <dd>{@code create} does not operate by default on a particular Scheduler.</dd>
      * </dl>
      *
      * @param syncano Syncano instance used in this operation
@@ -682,7 +680,7 @@ public class SyncanoObservable {
      * @param username user name from registration.
      * @param password user password.
      * @param <T> the type of the items that this Observable emits
-     * @return an Observable that, when a {@link Subscriber} subscribes to it, will execute the
+     * @return an Observable that, when a Subscriber subscribes to it, will execute the
      * specified function
      */
     public static <T extends AbstractUser> Observable<T> loginUser(Syncano syncano, Class<T> clazz, String username, String password) {
@@ -691,12 +689,12 @@ public class SyncanoObservable {
     }
 
     /**
-     * Generate the Observable that, when a {@link Subscriber} subscribes to it, will AAuthenticate
+     * Generate the Observable that, when a Subscriber subscribes to it, will AAuthenticate
      * a social user
      *
      * <dl>
      *  <dt><b>Scheduler:</b></dt>
-     *  <dd>{@code create} does not operate by default on a particular {@link Scheduler}.</dd>
+     *  <dd>{@code create} does not operate by default on a particular Scheduler.</dd>
      * </dl>
      *
      * @param syncano Syncano instance used in this operation
@@ -704,7 +702,7 @@ public class SyncanoObservable {
      * @param socialAuthBackend social network authentication backend
      * @param authToken authentication token.
      * @param <T> the type of the items that this Observable emits
-     * @return an Observable that, when a {@link Subscriber} subscribes to it, will execute the
+     * @return an Observable that, when a Subscriber subscribes to it, will execute the
      * specified function
      */
     public static <T extends AbstractUser> Observable<T> loginSocialUser(Syncano syncano, Class<T> clazz, SocialAuthBackend socialAuthBackend, String authToken) {
@@ -713,18 +711,18 @@ public class SyncanoObservable {
     }
 
     /**
-     * Generate the Observable that, when a {@link Subscriber} subscribes to it, will AAuthenticate
+     * Generate the Observable that, when a Subscriber subscribes to it, will AAuthenticate
      * a social user
      *
      * <dl>
      *  <dt><b>Scheduler:</b></dt>
-     *  <dd>{@code create} does not operate by default on a particular {@link Scheduler}.</dd>
+     *  <dd>{@code create} does not operate by default on a particular Scheduler.</dd>
      * </dl>
      *
      * @param syncano Syncano instance used in this operation
      * @param socialAuthBackend social network authentication backend
      * @param authToken authentication token.
-     * @return an Observable that, when a {@link Subscriber} subscribes to it, will execute the
+     * @return an Observable that, when a Subscriber subscribes to it, will execute the
      * specified function
      */
     public static Observable<User> loginSocialUser(Syncano syncano, SocialAuthBackend socialAuthBackend, String authToken){
@@ -733,18 +731,18 @@ public class SyncanoObservable {
     }
 
     /**
-     * Generate the Observable that, when a {@link Subscriber} subscribes to it, will AAuthenticate
+     * Generate the Observable that, when a Subscriber subscribes to it, will AAuthenticate
      * a social user
      *
      * <dl>
      *  <dt><b>Scheduler:</b></dt>
-     *  <dd>{@code create} does not operate by default on a particular {@link Scheduler}.</dd>
+     *  <dd>{@code create} does not operate by default on a particular Scheduler.</dd>
      * </dl>
      *
      * @param syncano Syncano instance used in this operation
      * @param t user to log in
      * @param <T> the type of the items that this Observable emits
-     * @return an Observable that, when a {@link Subscriber} subscribes to it, will execute the
+     * @return an Observable that, when a Subscriber subscribes to it, will execute the
      * specified function
      */
     public static <T extends AbstractUser> Observable<T> loginSocialUser(Syncano syncano, T t){
@@ -756,17 +754,17 @@ public class SyncanoObservable {
     // RequestBuilder and Where Methods
     ////////////////////////////////////////////////////////////////////////////////////////////////
     /**
-     * Generate the Observable that, when a {@link Subscriber} subscribes to it, will Load data with
-     * a predefined {@link Where} instance
+     * Generate the Observable that, when a Subscriber subscribes to it, will Load data with
+     * a predefined Where instance
      *
      * <dl>
      *  <dt><b>Scheduler:</b></dt>
-     *  <dd>{@code create} does not operate by default on a particular {@link Scheduler}.</dd>
+     *  <dd>{@code create} does not operate by default on a particular Scheduler.</dd>
      * </dl>
      *
      * @param where instance load the objects
      * @param <T> the type of the items that this Observable emits
-     * @return an Observable that, when a {@link Subscriber} subscribes to it, will execute the
+     * @return an Observable that, when a Subscriber subscribes to it, will execute the
      * specified function
      */
     public static <T extends SyncanoObject> Observable<T> get(Where<T> where) {
@@ -775,17 +773,17 @@ public class SyncanoObservable {
     }
 
     /**
-     * Generate the Observable that, when a {@link Subscriber} subscribes to it, will Load data with
-     * a predefined {@link RequestBuilder} instance
+     * Generate the Observable that, when a Subscriber subscribes to it, will Load data with
+     * a predefined RequestBuilder instance
      *
      * <dl>
      *  <dt><b>Scheduler:</b></dt>
-     *  <dd>{@code create} does not operate by default on a particular {@link Scheduler}.</dd>
+     *  <dd>{@code create} does not operate by default on a particular Scheduler.</dd>
      * </dl>
      *
      * @param clazz Syncano class that will be requested
      * @param <T> the type of the items that this Observable emits
-     * @return an Observable that, when a {@link Subscriber} subscribes to it, will execute the
+     * @return an Observable that, when a Subscriber subscribes to it, will execute the
      * specified function
      */
     public static <T extends SyncanoObject> Observable<T> get(Class<T> clazz){
@@ -793,18 +791,18 @@ public class SyncanoObservable {
     }
 
     /**
-     * Generate the Observable that, when a {@link Subscriber} subscribes to it, will Load data with
-     * a predefined {@link RequestBuilder} instance. Use it when you want to apply limits, filters,
+     * Generate the Observable that, when a Subscriber subscribes to it, will Load data with
+     * a predefined RequestBuilder instance. Use it when you want to apply limits, filters,
      * ordering...
      *
      * <dl>
      *  <dt><b>Scheduler:</b></dt>
-     *  <dd>{@code create} does not operate by default on a particular {@link Scheduler}.</dd>
+     *  <dd>{@code create} does not operate by default on a particular Scheduler.</dd>
      * </dl>
      *
      * @param builder instance load the objects
      * @param <T> the type of the items that this Observable emits
-     * @return an Observable that, when a {@link Subscriber} subscribes to it, will execute the
+     * @return an Observable that, when a Subscriber subscribes to it, will execute the
      * specified function
      */
     public static <T extends SyncanoObject> Observable<T> get(RequestBuilder<T> builder) {
@@ -813,18 +811,18 @@ public class SyncanoObservable {
     }
 
     /**
-     * Generate the Observable that, when a {@link Subscriber} subscribes to it, will load one
+     * Generate the Observable that, when a Subscriber subscribes to it, will load one
      * object using an id as reference
      *
      * <dl>
      *  <dt><b>Scheduler:</b></dt>
-     *  <dd>{@code create} does not operate by default on a particular {@link Scheduler}.</dd>
+     *  <dd>{@code create} does not operate by default on a particular Scheduler.</dd>
      * </dl>
      *
      * @param clazz Syncano class that will be requested.
      * @param id id of syncano object
      * @param <T> the type of the items that this Observable emits
-     * @return an Observable that, when a {@link Subscriber} subscribes to it, will execute the
+     * @return an Observable that, when a Subscriber subscribes to it, will execute the
      * specified function
      */
     public static <T extends SyncanoObject> Observable<T> get(Class<T> clazz, int id){
@@ -833,17 +831,17 @@ public class SyncanoObservable {
     }
 
     /**
-     * Generate the Observable that, when a {@link Subscriber} subscribes to it, will load the count
+     * Generate the Observable that, when a Subscriber subscribes to it, will load the count
      * estimation of a current object.
      *
      * <dl>
      *  <dt><b>Scheduler:</b></dt>
-     *  <dd>{@code create} does not operate by default on a particular {@link Scheduler}.</dd>
+     *  <dd>{@code create} does not operate by default on a particular Scheduler.</dd>
      * </dl>
      *
      * @param clazz Syncano class that will be requested.
      * @param <T> the type of the Data Object that will be counted
-     * @return an Observable that, when a {@link Subscriber} subscribes to it, will execute the
+     * @return an Observable that, when a Subscriber subscribes to it, will execute the
      * specified function
      */
     public static <T extends SyncanoObject> Observable<Integer> getCountEstimation(Class<T> clazz) {
@@ -855,16 +853,15 @@ public class SyncanoObservable {
     // ScriptEndpoint Methods
     ////////////////////////////////////////////////////////////////////////////////////////////////
     /**
-     * Generate the Observable that, when a {@link Subscriber} subscribes to it, will run a
-     * {@link ScriptEndpoint}
+     * Generate the Observable that, when a Subscriber subscribes to it, will run a ScriptEndpoint
      *
      * <dl>
      *  <dt><b>Scheduler:</b></dt>
-     *  <dd>{@code create} does not operate by default on a particular {@link Scheduler}.</dd>
+     *  <dd>{@code create} does not operate by default on a particular Scheduler.</dd>
      * </dl>
      *
      * @param se Endpoint that will be executed
-     * @return an Observable that, when a {@link Subscriber} subscribes to it, will execute the
+     * @return an Observable that, when a Subscriber subscribes to it, will execute the
      * specified function
      */
     public static Observable<Trace> run(ScriptEndpoint se) {
@@ -873,17 +870,17 @@ public class SyncanoObservable {
     }
 
     /**
-     * Generate the Observable that, when a {@link Subscriber} subscribes to it, will run a
-     * {@link ScriptEndpoint} using an json as payload
+     * Generate the Observable that, when a Subscriber subscribes to it, will run a
+     * ScriptEndpoint using an json as payload
      *
      * <dl>
      *  <dt><b>Scheduler:</b></dt>
-     *  <dd>{@code create} does not operate by default on a particular {@link Scheduler}.</dd>
+     *  <dd>{@code create} does not operate by default on a particular Scheduler.</dd>
      * </dl>
      *
      * @param se endpoint that will be executed
      * @param payload payload to send
-     * @return an Observable that, when a {@link Subscriber} subscribes to it, will execute the
+     * @return an Observable that, when a Subscriber subscribes to it, will execute the
      * specified function
      */
     public static Observable<Trace> run(ScriptEndpoint se, JsonObject payload) {
@@ -892,16 +889,16 @@ public class SyncanoObservable {
     }
 
     /**
-     * Generate the Observable that, when a {@link Subscriber} subscribes to it, will run a
-     * {@link ScriptEndpoint}. Use this approach when you want to parse the response by yourself
+     * Generate the Observable that, when a Subscriber subscribes to it, will run a
+     * ScriptEndpoint. Use this approach when you want to parse the response by yourself
      *
      * <dl>
      *  <dt><b>Scheduler:</b></dt>
-     *  <dd>{@code create} does not operate by default on a particular {@link Scheduler}.</dd>
+     *  <dd>Ø@code create} does not operate by default on a particular Scheduler.</dd>
      * </dl>
      *
      * @param se endpoint that will be executed
-     * @return an Observable that, when a {@link Subscriber} subscribes to it, will execute the
+     * @return an Observable that, when a Subscriber subscribes to it, will execute the
      * specified function
      */
     public static Observable<String> runCustomResponse(ScriptEndpoint se) {
@@ -910,18 +907,18 @@ public class SyncanoObservable {
     }
 
     /**
-     * Generate the Observable that, when a {@link Subscriber} subscribes to it, will run a
-     * {@link ScriptEndpoint}. Use this approach when you want any serialized custom response
+     * Generate the Observable that, when a Subscriber subscribes to it, will run a
+     * ScriptEndpoint. Use this approach when you want any serialized custom response
      *
      * <dl>
      *  <dt><b>Scheduler:</b></dt>
-     *  <dd>{@code create} does not operate by default on a particular {@link Scheduler}.</dd>
+     *  <dd>{@code create} does not operate by default on a particular Scheduler.</dd>
      * </dl>
      *
      * @param se endpoint that will be executed
      * @param clazz Syncano class that will be requested.
      * @param <T> the type of the items that this Observable emits
-     * @return an Observable that, when a {@link Subscriber} subscribes to it, will execute the
+     * @return an Observable that, when a Subscriber subscribes to it, will execute the
      * specified function
      */
     public static <T> Observable<T> runCustomResponse(ScriptEndpoint se, Class<T> clazz) {
@@ -930,20 +927,20 @@ public class SyncanoObservable {
     }
 
     /**
-     * Generate the Observable that, when a {@link Subscriber} subscribes to it, will run a
-     * {@link ScriptEndpoint}. Use this approach when you want any serialized custom response and
+     * Generate the Observable that, when a Subscriber subscribes to it, will run a
+     * ScriptEndpoint. Use this approach when you want any serialized custom response and
      * pass any payload as parameter
      *
      * <dl>
      *  <dt><b>Scheduler:</b></dt>
-     *  <dd>{@code create} does not operate by default on a particular {@link Scheduler}.</dd>
+     *  <dd>{@code create} does not operate by default on a particular Scheduler.</dd>
      * </dl>
      *
      * @param se endpoint that will be executed
      * @param clazz Syncano class that will be requested.
      * @param payload payload to send
      * @param <T> the type of the items that this Observable emits
-     * @return an Observable that, when a {@link Subscriber} subscribes to it, will execute the
+     * @return an Observable that, when a Subscriber subscribes to it, will execute the
      * specified function
      */
     public static <T> Observable<T> runCustomResponse(ScriptEndpoint se, Class<T> clazz, JsonObject payload) {
@@ -952,17 +949,17 @@ public class SyncanoObservable {
     }
 
     /**
-     * Generate the Observable that, when a {@link Subscriber} subscribes to it, will Run a
+     * Generate the Observable that, when a Subscriber subscribes to it, will Run a
      * ScriptEndpoint
      *
      * <dl>
      *  <dt><b>Scheduler:</b></dt>
-     *  <dd>{@code create} does not operate by default on a particular {@link Scheduler}.</dd>
+     *  <dd>{@code create} does not operate by default on a particular Scheduler.</dd>
      * </dl>
      *
      * @param syncano Syncano instance used in this operation
      * @param scriptEndpoint ScriptEndpoint to run
-     * @return an Observable that, when a {@link Subscriber} subscribes to it, will execute the
+     * @return an Observable that, when a Subscriber subscribes to it, will execute the
      * specified function
      */
     public static Observable<String> runScriptEndpointCustomResponse(Syncano syncano, ScriptEndpoint scriptEndpoint){
@@ -971,18 +968,18 @@ public class SyncanoObservable {
     }
 
     /**
-     * Generate the Observable that, when a {@link Subscriber} subscribes to it, will Run a
+     * Generate the Observable that, when a Subscriber subscribes to it, will Run a
      * ScriptEndpoint
      *
      * <dl>
      *  <dt><b>Scheduler:</b></dt>
-     *  <dd>{@code create} does not operate by default on a particular {@link Scheduler}.</dd>
+     *  <dd>{@code create} does not operate by default on a particular Scheduler.</dd>
      * </dl>
      *
      * @param syncano Syncano instance used in this operation
      * @param scriptEndpoint ScriptEndpoint to run
      * @param payload params to pass to ScriptEndpoint
-     * @return an Observable that, when a {@link Subscriber} subscribes to it, will execute the
+     * @return an Observable that, when a Subscriber subscribes to it, will execute the
      * specified function
      */
     public static Observable<String> runScriptEndpointCustomResponse(Syncano syncano, ScriptEndpoint scriptEndpoint, JsonObject payload){
@@ -991,19 +988,19 @@ public class SyncanoObservable {
     }
 
     /**
-     * Generate the Observable that, when a {@link Subscriber} subscribes to it, will Run a
+     * Generate the Observable that, when a Subscriber subscribes to it, will Run a
      * ScriptEndpoint with custom responses
      *
      * <dl>
      *  <dt><b>Scheduler:</b></dt>
-     *  <dd>{@code create} does not operate by default on a particular {@link Scheduler}.</dd>
+     *  <dd>{@code create} does not operate by default on a particular Scheduler.</dd>
      * </dl>
      *
      * @param syncano Syncano instance used in this operation
      * @param scriptEndpoint ScriptEndpoint to run
      * @param clazz Syncano class that will be requested.
      * @param <T> the type of the items that this Observable emits
-     * @return an Observable that, when a {@link Subscriber} subscribes to it, will execute the
+     * @return an Observable that, when a Subscriber subscribes to it, will execute the
      * specified function
      */
     public static <T> Observable<T> runScriptEndpointCustomResponse(Syncano syncano, ScriptEndpoint scriptEndpoint, Class<T> clazz){
@@ -1012,12 +1009,12 @@ public class SyncanoObservable {
     }
 
     /**
-     * Generate the Observable that, when a {@link Subscriber} subscribes to it, will Run a
+     * Generate the Observable that, when a Subscriber subscribes to it, will Run a
      * ScriptEndpoint with custom responses
      *
      * <dl>
      *  <dt><b>Scheduler:</b></dt>
-     *  <dd>{@code create} does not operate by default on a particular {@link Scheduler}.</dd>
+     *  <dd>{@code create} does not operate by default on a particular Scheduler.</dd>
      * </dl>
      *
      * @param syncano Syncano instance used in this operation
@@ -1025,7 +1022,7 @@ public class SyncanoObservable {
      * @param clazz Syncano class that will be requested.
      * @param payload params to pass to ScriptEndpoint
      * @param <T> the type of the items that this Observable emits
-     * @return an Observable that, when a {@link Subscriber} subscribes to it, will execute the
+     * @return an Observable that, when a Subscriber subscribes to it, will execute the
      * specified function
      */
     public static <T> Observable<T>  runScriptEndpointCustomResponse(Syncano syncano, ScriptEndpoint scriptEndpoint, Class<T> clazz, JsonObject payload){
@@ -1034,17 +1031,17 @@ public class SyncanoObservable {
     }
 
     /**
-     * Generate the Observable that, when a {@link Subscriber} subscribes to it, will Run a
+     * Generate the Observable that, when a Subscriber subscribes to it, will Run a
      * ScriptEndpoint with custom responses
      *
      * <dl>
      *  <dt><b>Scheduler:</b></dt>
-     *  <dd>{@code create} does not operate by default on a particular {@link Scheduler}.</dd>
+     *  <dd>{@code create} does not operate by default on a particular Scheduler.</dd>
      * </dl>
      *
      * @param syncano Syncano instance used in this operation
      * @param name name of ScriptEndpoint
-     * @return an Observable that, when a {@link Subscriber} subscribes to it, will execute the
+     * @return an Observable that, when a Subscriber subscribes to it, will execute the
      * specified function
      */
     public static Observable<String> runScriptEndpointCustomResponse(Syncano syncano, String name){
@@ -1053,18 +1050,18 @@ public class SyncanoObservable {
     }
 
     /**
-     * Generate the Observable that, when a {@link Subscriber} subscribes to it, will Run a
+     * Generate the Observable that, when a Subscriber subscribes to it, will Run a
      * ScriptEndpoint with custom responses
      *
      * <dl>
      *  <dt><b>Scheduler:</b></dt>
-     *  <dd>{@code create} does not operate by default on a particular {@link Scheduler}.</dd>
+     *  <dd>{@code create} does not operate by default on a particular Scheduler.</dd>
      * </dl>
      *
      * @param syncano Syncano instance used in this operation
      * @param name name of ScriptEndpoint to run
      * @param payload params to pass to ScriptEndpoint
-     * @return an Observable that, when a {@link Subscriber} subscribes to it, will execute the
+     * @return an Observable that, when a Subscriber subscribes to it, will execute the
      * specified function
      */
     public static Observable<String> runScriptEndpointCustomResponse(Syncano syncano, String name, JsonObject payload){
@@ -1073,19 +1070,19 @@ public class SyncanoObservable {
     }
 
     /**
-     * Generate the Observable that, when a {@link Subscriber} subscribes to it, will Run a
+     * Generate the Observable that, when a Subscriber subscribes to it, will Run a
      * ScriptEndpoint with custom responses
      *
      * <dl>
      *  <dt><b>Scheduler:</b></dt>
-     *  <dd>{@code create} does not operate by default on a particular {@link Scheduler}.</dd>
+     *  <dd>{@code create} does not operate by default on a particular Scheduler.</dd>
      * </dl>
      *
      * @param syncano Syncano instance used in this operation
      * @param name name of ScriptEndpoint to run
      * @param clazz Syncano class that will be requested.
      * @param <T> the type of the items that this Observable emits
-     * @return an Observable that, when a {@link Subscriber} subscribes to it, will execute the
+     * @return an Observable that, when a Subscriber subscribes to it, will execute the
      * specified function
      */
     public static <T> Observable<T> runScriptEndpointCustomResponse(Syncano syncano, String name, Class<T> clazz){
@@ -1094,12 +1091,12 @@ public class SyncanoObservable {
     }
 
     /**
-     * Generate the Observable that, when a {@link Subscriber} subscribes to it, will Run a
+     * Generate the Observable that, when a Subscriber subscribes to it, will Run a
      * ScriptEndpoint with custom responses
      *
      * <dl>
      *  <dt><b>Scheduler:</b></dt>
-     *  <dd>{@code create} does not operate by default on a particular {@link Scheduler}.</dd>
+     *  <dd>{@code create} does not operate by default on a particular Scheduler.</dd>
      * </dl>
      *
      * @param syncano Syncano instance used in this operation
@@ -1107,7 +1104,7 @@ public class SyncanoObservable {
      * @param clazz Syncano class that will be requested.
      * @param payload params to pass to ScriptEndpoint
      * @param <T> the type of the items that this Observable emits
-     * @return an Observable that, when a {@link Subscriber} subscribes to it, will execute the
+     * @return an Observable that, when a Subscriber subscribes to it, will execute the
      * specified function
      */
     public static <T> Observable<T>  runScriptEndpointCustomResponse(Syncano syncano, String name, Class<T> clazz, JsonObject payload){
@@ -1116,17 +1113,17 @@ public class SyncanoObservable {
     }
 
     /**
-     * Generate the Observable that, when a {@link Subscriber} subscribes to it, will Run a
+     * Generate the Observable that, when a Subscriber subscribes to it, will Run a
      * ScriptEndpoint
      *
      * <dl>
      *  <dt><b>Scheduler:</b></dt>
-     *  <dd>{@code create} does not operate by default on a particular {@link Scheduler}.</dd>
+     *  <dd>{@code create} does not operate by default on a particular Scheduler.</dd>
      * </dl>
      *
      * @param syncano Syncano instance used in this operation
      * @param scriptEndpoint ScriptEndpoint to run
-     * @return an Observable that, when a {@link Subscriber} subscribes to it, will execute the
+     * @return an Observable that, when a Subscriber subscribes to it, will execute the
      * specified function
      */
     public static Observable<Trace> runScriptEndpoint(Syncano syncano, ScriptEndpoint scriptEndpoint) {
@@ -1135,18 +1132,18 @@ public class SyncanoObservable {
     }
 
     /**
-     * Generate the Observable that, when a {@link Subscriber} subscribes to it, will Run a
+     * Generate the Observable that, when a Subscriber subscribes to it, will Run a
      * ScriptEndpoint
      *
      * <dl>
      *  <dt><b>Scheduler:</b></dt>
-     *  <dd>{@code create} does not operate by default on a particular {@link Scheduler}.</dd>
+     *  <dd>{@code create} does not operate by default on a particular Scheduler.</dd>
      * </dl>
      *
      * @param syncano Syncano instance used in this operation
      * @param scriptEndpoint ScriptEndpoint to run
      * @param payload params to pass to ScriptEndpoint
-     * @return an Observable that, when a {@link Subscriber} subscribes to it, will execute the
+     * @return an Observable that, when a Subscriber subscribes to it, will execute the
      * specified function
      */
     public static Observable<Trace> runScriptEndpoint(Syncano syncano, ScriptEndpoint scriptEndpoint, JsonObject payload) {
@@ -1155,17 +1152,17 @@ public class SyncanoObservable {
     }
 
     /**
-     * Generate the Observable that, when a {@link Subscriber} subscribes to it, will Run a
+     * Generate the Observable that, when a Subscriber subscribes to it, will Run a
      * ScriptEndpoint
      *
      * <dl>
      *  <dt><b>Scheduler:</b></dt>
-     *  <dd>{@code create} does not operate by default on a particular {@link Scheduler}.</dd>
+     *  <dd>{@code create} does not operate by default on a particular Scheduler.</dd>
      * </dl>
      *
      * @param syncano Syncano instance used in this operation
      * @param name name of ScriptEndpoint to run
-     * @return an Observable that, when a {@link Subscriber} subscribes to it, will execute the
+     * @return an Observable that, when a Subscriber subscribes to it, will execute the
      * specified function
      */
     public static Observable<Trace> runScriptEndpoint(Syncano syncano, String name) {
@@ -1174,18 +1171,18 @@ public class SyncanoObservable {
     }
 
     /**
-     * Generate the Observable that, when a {@link Subscriber} subscribes to it, will Run a
+     * Generate the Observable that, when a Subscriber subscribes to it, will Run a
      * ScriptEndpoint
      *
      * <dl>
      *  <dt><b>Scheduler:</b></dt>
-     *  <dd>{@code create} does not operate by default on a particular {@link Scheduler}.</dd>
+     *  <dd>{@code create} does not operate by default on a particular Scheduler.</dd>
      * </dl>
      *
      * @param syncano Syncano instance used in this operation
      * @param name name of ScriptEndpoint to run
      * @param payload params to pass to ScriptEndpoint
-     * @return an Observable that, when a {@link Subscriber} subscribes to it, will execute the
+     * @return an Observable that, when a Subscriber subscribes to it, will execute the
      * specified function
      */
     public static Observable<Trace> runScriptEndpoint(Syncano syncano, String name, JsonObject payload) {
@@ -1197,16 +1194,16 @@ public class SyncanoObservable {
     // Script Methods
     ////////////////////////////////////////////////////////////////////////////////////////////////
     /**
-     * Generate the Observable that, when a {@link Subscriber} subscribes to it, will Run Script
+     * Generate the Observable that, when a Subscriber subscribes to it, will Run Script
      * asynchronously
      *
      * <dl>
      *  <dt><b>Scheduler:</b></dt>
-     *  <dd>{@code create} does not operate by default on a particular {@link Scheduler}.</dd>
+     *  <dd>{@code create} does not operate by default on a particular Scheduler.</dd>
      * </dl>
      *
      * @param script script to run
-     * @return an Observable that, when a {@link Subscriber} subscribes to it, will execute the
+     * @return an Observable that, when a Subscriber subscribes to it, will execute the
      * specified function
      */
     public static Observable<Trace> run(Script script){
@@ -1215,17 +1212,17 @@ public class SyncanoObservable {
     }
 
     /**
-     * Generate the Observable that, when a {@link Subscriber} subscribes to it, will Run Script
+     * Generate the Observable that, when a Subscriber subscribes to it, will Run Script
      * asynchronously
      *
      * <dl>
      *  <dt><b>Scheduler:</b></dt>
-     *  <dd>{@code create} does not operate by default on a particular {@link Scheduler}.</dd>
+     *  <dd>{@code create} does not operate by default on a particular Scheduler.</dd>
      * </dl>
      *
      * @param script script to run
      * @param payload params params to pass to Script
-     * @return an Observable that, when a {@link Subscriber} subscribes to it, will execute the
+     * @return an Observable that, when a Subscriber subscribes to it, will execute the
      * specified function
      */
     public static Observable<Trace> run(Script script, JsonObject payload){
@@ -1234,17 +1231,17 @@ public class SyncanoObservable {
     }
 
     /**
-     * Generate the Observable that, when a {@link Subscriber} subscribes to it, will Run Script
+     * Generate the Observable that, when a Subscriber subscribes to it, will Run Script
      * asynchronously
      *
      * <dl>
      *  <dt><b>Scheduler:</b></dt>
-     *  <dd>{@code create} does not operate by default on a particular {@link Scheduler}.</dd>
+     *  <dd>{@code create} does not operate by default on a particular Scheduler.</dd>
      * </dl>
      *
      * @param syncano Syncano instance used in this operation
      * @param id id of syncano script to run
-     * @return an Observable that, when a {@link Subscriber} subscribes to it, will execute the
+     * @return an Observable that, when a Subscriber subscribes to it, will execute the
      * specified function
      */
     public static Observable<Trace> runScript(Syncano syncano, int id){
@@ -1253,18 +1250,18 @@ public class SyncanoObservable {
     }
 
     /**
-     * Generate the Observable that, when a {@link Subscriber} subscribes to it, will Run Script
+     * Generate the Observable that, when a Subscriber subscribes to it, will Run Script
      * asynchronously
      *
      * <dl>
      *  <dt><b>Scheduler:</b></dt>
-     *  <dd>{@code create} does not operate by default on a particular {@link Scheduler}.</dd>
+     *  <dd>{@code create} does not operate by default on a particular Scheduler.</dd>
      * </dl>
      *
      * @param syncano Syncano instance used in this operation
      * @param id id of syncano script to run
      * @param payload params params to pass to Script
-     * @return an Observable that, when a {@link Subscriber} subscribes to it, will execute the
+     * @return an Observable that, when a Subscriber subscribes to it, will execute the
      * specified function
      */
     public static Observable<Trace> runScript(Syncano syncano, int id, JsonObject payload){
@@ -1273,17 +1270,17 @@ public class SyncanoObservable {
     }
 
     /**
-     * Generate the Observable that, when a {@link Subscriber} subscribes to it, will Run Script
+     * Generate the Observable that, when a Subscriber subscribes to it, will Run Script
      * asynchronously
      *
      * <dl>
      *  <dt><b>Scheduler:</b></dt>
-     *  <dd>{@code create} does not operate by default on a particular {@link Scheduler}.</dd>
+     *  <dd>{@code create} does not operate by default on a particular Scheduler.</dd>
      * </dl>
      *
      * @param syncano Syncano instance used in this operation
      * @param script syncano script to run
-     * @return an Observable that, when a {@link Subscriber} subscribes to it, will execute the
+     * @return an Observable that, when a Subscriber subscribes to it, will execute the
      * specified function
      */
     public static Observable<Trace> runScript(Syncano syncano, Script script){
@@ -1292,18 +1289,18 @@ public class SyncanoObservable {
     }
 
     /**
-     * Generate the Observable that, when a {@link Subscriber} subscribes to it, will Run Script
+     * Generate the Observable that, when a Subscriber subscribes to it, will Run Script
      * asynchronously
      *
      * <dl>
      *  <dt><b>Scheduler:</b></dt>
-     *  <dd>{@code create} does not operate by default on a particular {@link Scheduler}.</dd>
+     *  <dd>{@code create} does not operate by default on a particular Scheduler.</dd>
      * </dl>
      *
      * @param syncano Syncano instance used in this operation
      * @param script syncano script to run
      * @param payload params params to pass to Script
-     * @return an Observable that, when a {@link Subscriber} subscribes to it, will execute the
+     * @return an Observable that, when a Subscriber subscribes to it, will execute the
      * specified function
      */
     public static Observable<Trace> runScript(Syncano syncano, Script script, JsonObject payload){
@@ -1316,15 +1313,15 @@ public class SyncanoObservable {
     ////////////////////////////////////////////////////////////////////////////////////////////////
 
     /**
-     * Generate the Observable that, when a {@link Subscriber} subscribes to it, will fetch an trace
+     * Generate the Observable that, when a Subscriber subscribes to it, will fetch an trace
      *
      * <dl>
      *  <dt><b>Scheduler:</b></dt>
-     *  <dd>{@code create} does not operate by default on a particular {@link Scheduler}.</dd>
+     *  <dd>{@code create} does not operate by default on a particular Scheduler.</dd>
      * </dl>
      *
      * @param trace trace to be fetched
-     * @return an Observable that, when a {@link Subscriber} subscribes to it, will execute the
+     * @return an Observable that, when a Subscriber subscribes to it, will execute the
      * specified function
      */
     public static Observable<Trace> fetch(Trace trace) {
@@ -1333,17 +1330,17 @@ public class SyncanoObservable {
     }
 
     /**
-     * Generate the Observable that, when a {@link Subscriber} subscribes to it, will Get trace,
+     * Generate the Observable that, when a Subscriber subscribes to it, will Get trace,
      * result of Script execution. Refreshes values in given trace object.
      *
      * <dl>
      *  <dt><b>Scheduler:</b></dt>
-     *  <dd>{@code create} does not operate by default on a particular {@link Scheduler}.</dd>
+     *  <dd>{@code create} does not operate by default on a particular Scheduler.</dd>
      * </dl>
      *
      * @param syncano Syncano instance used in this operation
      * @param trace object to be loaded
-     * @return an Observable that, when a {@link Subscriber} subscribes to it, will execute the
+     * @return an Observable that, when a Subscriber subscribes to it, will execute the
      * specified function
      */
     public static Observable<Trace> getTrace(Syncano syncano, Trace trace) {
@@ -1352,18 +1349,18 @@ public class SyncanoObservable {
     }
 
     /**
-     * Generate the Observable that, when a {@link Subscriber} subscribes to it, will Get trace,
+     * Generate the Observable that, when a Subscriber subscribes to it, will Get trace,
      * result of Script execution. Refreshes values in given trace object.
      *
      * <dl>
      *  <dt><b>Scheduler:</b></dt>
-     *  <dd>{@code create} does not operate by default on a particular {@link Scheduler}.</dd>
+     *  <dd>{@code create} does not operate by default on a particular Scheduler.</dd>
      * </dl>
      *
      * @param syncano Syncano instance used in this operation
      * @param scriptId id of script executed
      * @param traceId id of trace to be loaded
-     * @return an Observable that, when a {@link Subscriber} subscribes to it, will execute the
+     * @return an Observable that, when a Subscriber subscribes to it, will execute the
      * specified function
      */
     public static Observable<Trace> getTrace(Syncano syncano, int scriptId, int traceId) {
@@ -1376,18 +1373,18 @@ public class SyncanoObservable {
     ////////////////////////////////////////////////////////////////////////////////////////////////
 
     /**
-     * Generate the Observable that, when a {@link Subscriber} subscribes to it, will start a
+     * Generate the Observable that, when a Subscriber subscribes to it, will start a
      * channel connection. When the returned observable was be unsubscribed the channel connection will
      * be stopped
      *
      * <dl>
      *  <dt><b>Scheduler:</b></dt>
-     *  <dd>{@code create} does not operate by default on a particular {@link Scheduler}.</dd>
+     *  <dd>{@code create} does not operate by default on a particular Scheduler.</dd>
      * </dl>
      *
      * @param syncano Syncano instance used in this operation
      * @param channelName name of channel to be connected
-     * @return an Observable that, when a {@link Subscriber} subscribes to it, will execute the
+     * @return an Observable that, when a Subscriber subscribes to it, will execute the
      * specified function
      */
     public static Observable<Notification> startChannelConnection(Syncano syncano, String channelName){
@@ -1400,19 +1397,19 @@ public class SyncanoObservable {
     }
 
     /**
-     * Generate the Observable that, when a {@link Subscriber} subscribes to it, will start a
+     * Generate the Observable that, when a Subscriber subscribes to it, will start a
      * channel connection. When the returned observable was be unsubscribed the channel connection will
      * be stopped
      *
      * <dl>
      *  <dt><b>Scheduler:</b></dt>
-     *  <dd>{@code create} does not operate by default on a particular {@link Scheduler}.</dd>
+     *  <dd>{@code create} does not operate by default on a particular Scheduler.</dd>
      * </dl>
      *
      * @param syncano Syncano instance used in this operation
      * @param channelName name of channel to be connected
      * @param roomName name of room to connect
-     * @return an Observable that, when a {@link Subscriber} subscribes to it, will execute the
+     * @return an Observable that, when a Subscriber subscribes to it, will execute the
      * specified function
      */
     public static Observable<Notification> startChannelConnection(Syncano syncano, String channelName, String roomName){
@@ -1425,20 +1422,20 @@ public class SyncanoObservable {
     }
 
     /**
-     * Generate the Observable that, when a {@link Subscriber} subscribes to it, will start a
+     * Generate the Observable that, when a Subscriber subscribes to it, will start a
      * channel connection. When the returned observable was be unsubscribed the channel connection will
      * be stopped
      *
      * <dl>
      *  <dt><b>Scheduler:</b></dt>
-     *  <dd>{@code create} does not operate by default on a particular {@link Scheduler}.</dd>
+     *  <dd>{@code create} does not operate by default on a particular Scheduler.</dd>
      * </dl>
      *
      * @param syncano Syncano instance used in this operation
      * @param channelName name of channel to be connected
      * @param roomName name of room to connect
      * @param lastId last notification id
-     * @return an Observable that, when a {@link Subscriber} subscribes to it, will execute the
+     * @return an Observable that, when a Subscriber subscribes to it, will execute the
      * specified function
      */
     public static Observable<Notification> startChannelConnection(Syncano syncano, String channelName, String roomName, int lastId){
@@ -1451,18 +1448,18 @@ public class SyncanoObservable {
     }
 
     /**
-     * Generate the Observable that, when a {@link Subscriber} subscribes to it, will Publish custom
+     * Generate the Observable that, when a Subscriber subscribes to it, will Publish custom
      * message
      *
      * <dl>
      *  <dt><b>Scheduler:</b></dt>
-     *  <dd>{@code create} does not operate by default on a particular {@link Scheduler}.</dd>
+     *  <dd>{@code create} does not operate by default on a particular Scheduler.</dd>
      * </dl>
      *
      * @param syncano Syncano instance used in this operation
      * @param channelName name of channel to be connected
      * @param notification notification to be published
-     * @return an Observable that, when a {@link Subscriber} subscribes to it, will execute the
+     * @return an Observable that, when a Subscriber subscribes to it, will execute the
      * specified function
      */
     public static Observable<Notification> publishOnChannel(Syncano syncano, String channelName, Notification notification) {
@@ -1471,17 +1468,17 @@ public class SyncanoObservable {
     }
 
     /**
-     * Generate the Observable that, when a {@link Subscriber} subscribes to it, will Get a list of
+     * Generate the Observable that, when a Subscriber subscribes to it, will Get a list of
      * Notifications
      *
      * <dl>
      *  <dt><b>Scheduler:</b></dt>
-     *  <dd>{@code create} does not operate by default on a particular {@link Scheduler}.</dd>
+     *  <dd>{@code create} does not operate by default on a particular Scheduler.</dd>
      * </dl>
      *
      * @param syncano Syncano instance used in this operation
      * @param channelName name of channel to be connected
-     * @return an Observable that, when a {@link Subscriber} subscribes to it, will execute the
+     * @return an Observable that, when a Subscriber subscribes to it, will execute the
      * specified function
      */
     public static Observable<Notification> getChannelHistory(Syncano syncano, String channelName) {
@@ -1490,18 +1487,18 @@ public class SyncanoObservable {
     }
 
     /**
-     * Generate the Observable that, when a {@link Subscriber} subscribes to it, will Get a list of
+     * Generate the Observable that, when a Subscriber subscribes to it, will Get a list of
      * Notifications
      *
      * <dl>
      *  <dt><b>Scheduler:</b></dt>
-     *  <dd>{@code create} does not operate by default on a particular {@link Scheduler}.</dd>
+     *  <dd>{@code create} does not operate by default on a particular Scheduler.</dd>
      * </dl>
      *
      * @param syncano Syncano instance used in this operation
      * @param channelName name of channel to be connected
      * @param roomName name of room to connect
-     * @return an Observable that, when a {@link Subscriber} subscribes to it, will execute the
+     * @return an Observable that, when a Subscriber subscribes to it, will execute the
      * specified function
      */
     public static Observable<Notification> getChannelHistory(Syncano syncano, String channelName, String roomName) {
@@ -1514,17 +1511,17 @@ public class SyncanoObservable {
     ////////////////////////////////////////////////////////////////////////////////////////////////
 
     /**
-     * Generate the Observable that, when a {@link Subscriber} subscribes to it, will register a
+     * Generate the Observable that, when a Subscriber subscribes to it, will register a
      * push device to send and receive push notifications
      *
      * <dl>
      *  <dt><b>Scheduler:</b></dt>
-     *  <dd>{@code create} does not operate by default on a particular {@link Scheduler}.</dd>
+     *  <dd>{@code create} does not operate by default on a particular Scheduler.</dd>
      * </dl>
      *
      * @param syncano Syncano instance used in this operation
      * @param pushDevice device to be registered
-     * @return an Observable that, when a {@link Subscriber} subscribes to it, will execute the
+     * @return an Observable that, when a Subscriber subscribes to it, will execute the
      * specified function
      */
     public static Observable<PushDevice> registerPushDevice(Syncano syncano, PushDevice pushDevice) {
@@ -1533,17 +1530,17 @@ public class SyncanoObservable {
     }
 
     /**
-     * Generate the Observable that, when a {@link Subscriber} subscribes to it, will delete a push
+     * Generate the Observable that, when a Subscriber subscribes to it, will delete a push
      * device
      *
      * <dl>
      *  <dt><b>Scheduler:</b></dt>
-     *  <dd>{@code create} does not operate by default on a particular {@link Scheduler}.</dd>
+     *  <dd>{@code create} does not operate by default on a particular Scheduler.</dd>
      * </dl>
      *
      * @param syncano Syncano instance used in this operation
      * @param pushDevice device to be deleted
-     * @return an Observable that, when a {@link Subscriber} subscribes to it, will execute the
+     * @return an Observable that, when a Subscriber subscribes to it, will execute the
      * specified function
      */
     public static Observable<PushDevice> deletePushDevice(Syncano syncano, PushDevice pushDevice){
