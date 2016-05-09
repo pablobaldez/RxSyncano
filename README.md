@@ -22,6 +22,12 @@ SyncanoObservable class covers all Syncano features, wrapping calls and returnin
 Usage
 ----------
 
+#### Installation
+
+It's avaialable on maven jcenter repository. Just put it as your dependency in build.gradle file
+
+	compile 'com.pablobaldez:rxsyncano:1.0.0'
+
 #### Getting Objects
 You can also get by id, get using Where (to custom criterias), get using BuildRequest (to filter fields and paging). All of them using the current or a custom Syncano instance.
 
@@ -128,7 +134,7 @@ Scripts and script endpoints have support for all run and runCustomResponse vari
 	Script script = new Script(1);
     JsonObject payload = new JsonObject();
     // returns an Observable<Trace>
-    SyncanoObservable.run(script).subscribe();
+    SyncanoObservable.run(script, payload).subscribe();
 
 #### Running ScriptEndpoint
 **Before:**
@@ -159,12 +165,6 @@ All syncano erros will be wrapped to RxSyncanoException and sent to subscriber.o
 Threads
 ----------
 All calls are asynchronous and works with Syncano callbacks, but is strongly recommended to use rx schedulers to receive the responses on worker threads. Take a look in [RxAndroid](https://github.com/ReactiveX/RxAndroid) to work with Android main thread
-
-Installation
-----------
-It's avaialable on jcenter. Just put it as your dependency in build.gradle file
-
-	compile 'com.pablobaldez:rxsyncano:1.0.0'
 
 Acknowledgment
 ----------
