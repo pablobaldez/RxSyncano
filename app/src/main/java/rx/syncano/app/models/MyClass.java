@@ -7,8 +7,8 @@ import com.syncano.library.data.SyncanoObject;
 /**
  * Created by pablobaldez on 4/27/16.
  */
-@SyncanoClass(name = TestModel.CLASS_NAME)
-public class TestModel extends SyncanoObject {
+@SyncanoClass(name = MyClass.CLASS_NAME)
+public class MyClass extends SyncanoObject {
 
     public static final String CLASS_NAME = "test_model";
 

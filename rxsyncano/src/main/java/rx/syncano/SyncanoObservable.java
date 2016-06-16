@@ -20,6 +20,7 @@ import com.syncano.library.simple.RequestBuilder;
 
 import rx.Observable;
 import rx.Observable.OnSubscribe;
+import rx.subscriptions.Subscriptions;
 
 /**
  * Created by pablobaldez on 24/04/16.
@@ -1393,7 +1394,8 @@ public class SyncanoObservable {
             RxChannelConnectionListener listener = new RxChannelConnectionListener(subscriber);
             channelConnection.setChannelConnectionListener(listener);
             channelConnection.start(channelName);
-        }).doOnUnsubscribe(channelConnection::stop);
+            subscriber.add(Subscriptions.create(channelConnection::stop));
+        });
     }
 
     /**
@@ -1417,8 +1419,8 @@ public class SyncanoObservable {
         return Observable.create((OnSubscribe<Notification>) subscriber -> {
             RxChannelConnectionListener listener = new RxChannelConnectionListener(subscriber);
             channelConnection.setChannelConnectionListener(listener);
-            channelConnection.start(channelName, roomName);
-        }).doOnUnsubscribe(channelConnection::stop);
+            subscriber.add(Subscriptions.create(channelConnection::stop));
+        });
     }
 
     /**
@@ -1444,7 +1446,8 @@ public class SyncanoObservable {
             RxChannelConnectionListener listener = new RxChannelConnectionListener(subscriber);
             channelConnection.setChannelConnectionListener(listener);
             channelConnection.start(channelName, roomName, lastId);
-        }).doOnUnsubscribe(channelConnection::stop);
+            subscriber.add(Subscriptions.create(channelConnection::stop));
+        });
     }
 
     /**
